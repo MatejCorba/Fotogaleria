@@ -1,8 +1,8 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
+import { images } from './images';
 
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+    images: images
+  },
 });
