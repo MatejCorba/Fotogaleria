@@ -6,7 +6,6 @@
     <AddNewGallery /> 
   </div>
 
-  <footer></footer>
 </template>
 
 <script>
