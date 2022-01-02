@@ -1,6 +1,6 @@
 <template>
   <Header />
-  
+
   <div class="grid-container">
     <Images />
     <AddNewGallery /> 
@@ -29,7 +29,7 @@ export default {
     });
 
     onMounted(() => {
-        store.dispatch("getGalleriesFromAPI");
+        store.dispatch("images/getGalleriesFromAPI");
     });
 
     return {

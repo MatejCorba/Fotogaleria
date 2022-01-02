@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export const images = {
+  namespaced: true,
+
   state: () => ({
     galleries: [],
   }),
