@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, onMounted } from 'vue';
+import { useStore } from 'vuex'
 import Images from '../components/Images.vue';
 import AddNewGallery from "../components/AddNewGallery.vue";
 
@@ -24,8 +25,13 @@ export default {
     AddNewGallery
   },
   setup() {
+    const store = useStore();
     const state = reactive({
       count: 0,
+    });
+
+    onMounted(() => {
+        store.dispatch("getGalleriesFromAPI");
     });
 
     return {
