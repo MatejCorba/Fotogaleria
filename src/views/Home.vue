@@ -2,7 +2,7 @@
   <Header />
 
   <div class="grid-container">
-    <Images />
+    <Galleries />
     <AddNewGallery /> 
   </div>
 
@@ -12,13 +12,13 @@
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
 import { useStore } from 'vuex'
-import Images from '../components/Images.vue';
+import Galleries from '../components/Galleries.vue';
 import AddNewGallery from "../components/AddNewGallery.vue";
 import Header from "../components/Header.vue";
 
 export default {
   components: {
-    Images,
+    Galleries,
     AddNewGallery,
     Header
   },
