@@ -1,10 +1,6 @@
 <template>
-  <div class="bcg"></div>
-  <div class="text-block">
-    <h1>Fotogaléria</h1>
-    <h3>Kategórie</h3>
-  </div>
-
+  <Header />
+  
   <div class="grid-container">
     <Images />
     <AddNewGallery /> 
@@ -18,11 +14,13 @@ import { reactive, toRefs, onMounted } from 'vue';
 import { useStore } from 'vuex'
 import Images from '../components/Images.vue';
 import AddNewGallery from "../components/AddNewGallery.vue";
+import Header from "../components/Header.vue";
 
 export default {
   components: {
     Images,
-    AddNewGallery
+    AddNewGallery,
+    Header
   },
   setup() {
     const store = useStore();
