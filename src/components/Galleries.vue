@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="gallery in $store.getters[`images/getImages`]"
+    v-for="gallery in $store.getters[`galleries/getImages`]"
     :key="gallery._id"
     class="gallery gallery-hover-efect"
   >

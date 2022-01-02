@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const images = {
+export const galleries = {
   namespaced: true,
 
   state: () => ({

@@ -1,8 +1,8 @@
 import { createStore } from 'vuex';
-import { images } from './images';
+import { galleries } from './galleries';
 
 export default createStore({
   modules: {
-    images: images
+    galleries: galleries
   },
 });
