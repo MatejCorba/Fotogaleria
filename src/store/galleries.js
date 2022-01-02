@@ -20,7 +20,7 @@ export const galleries = {
     },
   },
   getters: {
-    getImages(state) {
+    getGalleries(state) {
       return state.galleries;
     },
   },

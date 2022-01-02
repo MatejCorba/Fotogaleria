@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="gallery in $store.getters[`galleries/getImages`]"
+    v-for="gallery in $store.getters[`galleries/getGalleries`]"
     :key="gallery._id"
     class="gallery gallery-hover-efect"
   >
@@ -12,7 +12,6 @@
     />
     <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
   </div>
-
 </template>
 
 <script>
@@ -30,5 +29,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
