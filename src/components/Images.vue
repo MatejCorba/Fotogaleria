@@ -1,16 +1,16 @@
 <template>
   <div
-    v-for="image in $store.getters.getImages"
-    :key="image.id"
+    v-for="gallery in $store.getters.getImages"
+    :key="gallery._id"
     class="gallery gallery-hover-efect"
   >
     <img
       class="img-gallery"
-      :src="image.path"
-      :alt="image.name"
-      :title="image.name"
+      :src="`http://localhost:3000/api/galleries/${gallery._id}`"
+      :alt="gallery.name"
+      :title="gallery.name"
     />
-    <p class="gallery-name">{{ image.name }}</p>
+    <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
   </div>
 
 </template>
