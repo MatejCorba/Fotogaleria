@@ -6,7 +6,7 @@
   >
     <img
       class="img-gallery"
-      :src="`http://localhost:3000/api/galleries/${gallery._id}`"
+      :src="`${config.GALLERIES_URI}${gallery._id}`"
       :alt="gallery.name"
       :title="gallery.name"
     />
@@ -16,6 +16,7 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
+import { config } from '../config';
 
 export default {
   setup() {
@@ -25,6 +26,7 @@ export default {
 
     return {
       ...toRefs(state),
+      config,
     };
   },
 };

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { config } from '../config';
 
 export const galleries = {
   namespaced: true,
@@ -9,14 +10,14 @@ export const galleries = {
 
   mutations: {
     getGalleriesFromAPI(state, galleries) {
-        state.galleries = galleries
-    }
+      state.galleries = galleries;
+    },
   },
 
   actions: {
     async getGalleriesFromAPI({ commit }) {
-      const response = await axios.get('http://localhost:3000/api/galleries');
-      commit("getGalleriesFromAPI", response.data);
+      const response = await axios.get(config.GALLERIES_URI);
+      commit('getGalleriesFromAPI', response.data);
     },
   },
   getters: {
@@ -25,6 +26,3 @@ export const galleries = {
     },
   },
 };
-
-
-
