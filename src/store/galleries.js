@@ -16,7 +16,7 @@ export const galleries = {
 
   actions: {
     async getGalleriesFromAPI({ commit }) {
-      const response = await axios.get(config.GALLERIES_URI);
+      const response = await axios.get(config.API_GALLERIES_URI);
       commit('getGalleriesFromAPI', response.data);
     },
   },

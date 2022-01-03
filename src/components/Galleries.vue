@@ -6,7 +6,7 @@
   >
     <img
       class="img-gallery"
-      :src="`${config.GALLERIES_URI}${gallery._id}`"
+      :src="`${config.API_GALLERIES_URI}${gallery._id}`"
       :alt="gallery.name"
       :title="gallery.name"
     />
