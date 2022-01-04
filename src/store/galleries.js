@@ -6,7 +6,7 @@ export const galleries = {
 
   state: () => ({
     galleries: [],
-    newGalleryClicked: false,
+    showGalleryModal: false,
   }),
 
   mutations: {
@@ -14,12 +14,12 @@ export const galleries = {
       state.galleries = galleries;
     },
     changeModalVisibility(state) {
-      state.newGalleryClicked = !state.newGalleryClicked;
+      state.showGalleryModal = !state.showGalleryModal;
     },
 
     addNewGalery(state, newGallery) {
       state.galleries.push(newGallery);
-    }
+    },
   },
 
   actions: {

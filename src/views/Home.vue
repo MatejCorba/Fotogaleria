@@ -4,7 +4,7 @@
   <div class="grid-container">
     <Galleries />
   </div>
-  <NewGalleryModal v-if="$store.state.galleries.newGalleryClicked" />
+  <NewGalleryModal v-if="$store.state.galleries.showGalleryModal" />
 
   <footer></footer>
 </template>

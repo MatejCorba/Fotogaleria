@@ -3,6 +3,6 @@ import { galleries } from './galleries';
 
 export default createStore({
   modules: {
-    galleries: galleries
+    galleries: galleries,
   },
 });
