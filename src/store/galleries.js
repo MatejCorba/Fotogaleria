@@ -38,9 +38,5 @@ export const galleries = {
       commit('addNewGalery', response.data);
     },
   },
-  getters: {
-    getGalleries(state) {
-      return state.galleries;
-    },
-  },
+  getters: {},
 };
