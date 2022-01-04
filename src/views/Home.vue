@@ -4,13 +4,13 @@
   <div class="grid-container">
     <Galleries />
   </div>
-  <NewGalleryModal v-if="$store.state.galleries.showGalleryModal" />
+  <NewGalleryModal v-if="showGalleryModal" />
 
   <footer></footer>
 </template>
 
 <script>
-import { reactive, toRefs, onMounted } from 'vue';
+import { reactive, toRefs, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import Galleries from '../components/Galleries.vue';
 import Header from '../components/Header.vue';
@@ -32,8 +32,14 @@ export default {
       store.dispatch('galleries/getGalleriesFromAPI');
     });
 
+    // Computed properties
+    const showGalleryModal = computed(
+      () => store.state.galleries.showGalleryModal
+    );
+
     return {
       ...toRefs(state),
+      showGalleryModal,
     };
   },
 };

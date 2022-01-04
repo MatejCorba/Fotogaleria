@@ -6,7 +6,7 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { useStore } from "vuex";
+import { useStore } from 'vuex';
 
 export default {
   setup() {
@@ -15,21 +15,19 @@ export default {
       count: 0,
     });
 
-    const plusIconClicked = () => {
-      store.dispatch(`galleries/changeModalVisibility`)
-    }
-
+    const plusIconClicked = () =>
+      store.dispatch(`galleries/changeModalVisibility`);
 
     return {
       ...toRefs(state),
-      plusIconClicked
+      plusIconClicked,
     };
   },
 };
 </script>
 
 <style scoped>
-  .plus {
-    cursor: pointer;
-  }
+.plus {
+  cursor: pointer;
+}
 </style>
