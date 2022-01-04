@@ -12,13 +12,19 @@
     />
     <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
   </div>
+
+  <NewGalleryIcon />
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
 import { config } from '../config';
+import NewGalleryIcon from '../components/NewGalleryIcon.vue';
 
 export default {
+  components: {
+    NewGalleryIcon,
+  },
   setup() {
     const state = reactive({
       count: 0,
