@@ -3,23 +3,25 @@
 
   <div class="grid-container">
     <Galleries />
-    <AddNewGallery /> 
+    <AddNewGallery />
   </div>
-
+  <NewGalleryModal v-if="$store.state.galleries.newGalleryClicked" />
 </template>
 
 <script>
 import { reactive, toRefs, onMounted } from 'vue';
-import { useStore } from 'vuex'
+import { useStore } from 'vuex';
 import Galleries from '../components/Galleries.vue';
-import AddNewGallery from "../components/AddNewGallery.vue";
-import Header from "../components/Header.vue";
+import AddNewGallery from '../components/AddNewGallery.vue';
+import Header from '../components/Header.vue';
+import NewGalleryModal from '../components/NewGalleryModal.vue';
 
 export default {
   components: {
     Galleries,
     AddNewGallery,
-    Header
+    Header,
+    NewGalleryModal,
   },
   setup() {
     const store = useStore();
@@ -28,7 +30,7 @@ export default {
     });
 
     onMounted(() => {
-        store.dispatch("galleries/getGalleriesFromAPI");
+      store.dispatch('galleries/getGalleriesFromAPI');
     });
 
     return {
