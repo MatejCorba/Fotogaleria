@@ -9,6 +9,7 @@
       type="text"
       placeholder="Zadaj názov kategórie"
       v-model="inputText"
+      @keyup.enter="newGalleryAdded"
     />
     <button class="add-btn" @click="newGalleryAdded">
       <i class="fas fa-plus"></i> Pridať
