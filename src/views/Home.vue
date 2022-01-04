@@ -6,6 +6,8 @@
     <AddNewGallery />
   </div>
   <NewGalleryModal v-if="$store.state.galleries.newGalleryClicked" />
+
+  <footer></footer>
 </template>
 
 <script>
