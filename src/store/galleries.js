@@ -6,11 +6,15 @@ export const galleries = {
 
   state: () => ({
     galleries: [],
+    newGalleryClicked: false,
   }),
 
   mutations: {
     getGalleriesFromAPI(state, galleries) {
       state.galleries = galleries;
+    },
+    changeModalVisibility(state) {
+      state.newGalleryClicked = !state.newGalleryClicked;
     },
   },
 
@@ -18,6 +22,9 @@ export const galleries = {
     async getGalleriesFromAPI({ commit }) {
       const response = await axios.get(config.API_GALLERIES_URI);
       commit('getGalleriesFromAPI', response.data);
+    },
+    changeModalVisibility({ commit }) {
+      commit('changeModalVisibility');
     },
   },
   getters: {
