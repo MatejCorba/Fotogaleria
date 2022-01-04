@@ -16,6 +16,10 @@ export const galleries = {
     changeModalVisibility(state) {
       state.newGalleryClicked = !state.newGalleryClicked;
     },
+
+    addNewGalery(state, newGallery) {
+      state.galleries.push(newGallery);
+    }
   },
 
   actions: {
@@ -25,6 +29,13 @@ export const galleries = {
     },
     changeModalVisibility({ commit }) {
       commit('changeModalVisibility');
+    },
+
+    async addNewGallery({ commit }, name) {
+      const response = await axios.post(config.API_GALLERIES_URI, {
+        name: name,
+      });
+      commit('addNewGalery', response.data);
     },
   },
   getters: {

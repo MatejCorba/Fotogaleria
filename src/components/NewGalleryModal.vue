@@ -1,5 +1,6 @@
 <template>
-  <div class="overlay overlay-on"></div>
+  <div class="overlay overlay-on" @click="galleryModalClosed"></div>
+
   <section class="center modal">
     <i class="fas fa-times close" @click="galleryModalClosed"></i>
     <h1 class="add">PRIDAJ KATEGÓRIU</h1>
@@ -9,29 +10,37 @@
       placeholder="Zadaj názov kategórie"
       v-model="inputText"
     />
-    <button class="add-btn"><i class="fas fa-plus"></i> Pridať</button>
+    <button class="add-btn" @click="newGalleryAdded">
+      <i class="fas fa-plus"></i> Pridať
+    </button>
     <hr class="hr-galleries" />
   </section>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { useStore } from "vuex";
+import { useStore } from 'vuex';
 
 export default {
   setup() {
     const store = useStore();
     const state = reactive({
-      count: 0,
+      inputText: '',
     });
 
     const galleryModalClosed = () => {
-        store.dispatch("galleries/changeModalVisibility")
-    }
+      store.dispatch('galleries/changeModalVisibility');
+    };
+
+    const newGalleryAdded = () => {
+      store.dispatch('galleries/addNewGallery', state.inputText);
+      store.dispatch('galleries/changeModalVisibility');
+    };
 
     return {
       ...toRefs(state),
-      galleryModalClosed
+      galleryModalClosed,
+      newGalleryAdded,
     };
   },
 };
