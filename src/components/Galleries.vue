@@ -4,6 +4,8 @@
     :key="gallery._id"
     class="gallery gallery-hover-efect"
   >
+
+  <router-link :to="{name: `Images`, params: {GalleryName: gallery.name } }" style="text-decoration: none; color: inherit;">
     <img
       class="img-gallery"
       :src="`${config.API_GALLERIES_URI}${gallery._id}`"
@@ -11,6 +13,7 @@
       :title="gallery.name"
     />
     <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
+  </router-link>
   </div>
 
   <NewGalleryIcon />
