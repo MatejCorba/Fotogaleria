@@ -21,8 +21,8 @@
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
-import { config } from '../config';
-import NewGalleryIcon from '../components/NewGalleryIcon.vue';
+import { config } from '../../config';
+import NewGalleryIcon from './NewGalleryIcon.vue';
 import { useStore } from 'vuex';
 
 export default {
