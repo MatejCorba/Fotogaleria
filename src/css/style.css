@@ -308,7 +308,7 @@ hr {
 .images-container {
   display: grid;
   justify-content: center;
-  grid-gap: 20px 10px;
+  grid-gap: 40px 40px;
   margin-top: 50px;
 }
 .img {
@@ -321,7 +321,7 @@ hr {
   transition: 0.3s;
 }
 .images :hover {
-  margin-top: -20px;
+  margin-top: -10px;
 }
 .plus-images {
   height: 250px;
