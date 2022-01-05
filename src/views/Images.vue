@@ -1,15 +1,16 @@
 <template>
   <Header :title="galleryName.toUpperCase()" />
   <div class="images-container">
-    <GalleryImages />
+    <GalleryImages :name="galleryName" />
   </div>
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, onMounted } from 'vue';
 import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
 import GalleryImages from '../components/images/GalleryImages.vue';
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -17,6 +18,7 @@ export default {
     GalleryImages,
   },
   setup() {
+    const store = useStore();
     const router = useRoute();
     const state = reactive({
       count: 0,
@@ -24,6 +26,10 @@ export default {
 
     // Computed properties
     const galleryName = computed(() => router.params.galleryName);
+
+    onMounted(() => {
+      store.dispatch('images/getImagesFromAPI', galleryName);
+    });
 
     return {
       ...toRefs(state),
