@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, onMounted } from 'vue';
+import { reactive, toRefs, computed, onMounted, onUnmounted } from 'vue';
 import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
 import GalleryImages from '../components/images/GalleryImages.vue';
@@ -29,6 +29,10 @@ export default {
 
     onMounted(() => {
       store.dispatch('images/getImagesFromAPI', galleryName);
+    });
+
+    onUnmounted(() => {
+      store.state.images.images = [];
     });
 
     return {
