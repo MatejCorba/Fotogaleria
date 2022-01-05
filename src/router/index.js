@@ -12,7 +12,7 @@ const routes = [
   // Dynamic route
   // Máme iba jeden route ktorý linkuje na všetko (), posielame mu parameter (:id) a na základe neho sa sám (dynamicky) vygeneruje
   {
-    path: '/:pathMatch(.)*/:GalleryName',
+    path: '/:pathMatch(.)*/:galleryName',
     name: 'Images',
     component: Images,
   },

@@ -5,7 +5,7 @@
     class="gallery gallery-hover-efect"
   >
 
-  <router-link :to="{name: `Images`, params: {GalleryName: gallery.name } }" style="text-decoration: none; color: inherit;">
+  <router-link :to="{name: `Images`, params: { galleryName: gallery.name } }" style="text-decoration: none; color: inherit;">
     <img
       class="img-gallery"
       :src="`${config.API_GALLERIES_URI}${gallery._id}`"
