@@ -5,18 +5,18 @@ export const images = {
   namespaced: true,
 
   state: () => ({
-      images: []
+    images: [],
   }),
   mutations: {
-      getImagesFromAPI(state, galleryImages){
-          state.images = galleryImages;
-      }
+    getImagesFromAPI(state, galleryImages) {
+      state.images = galleryImages;
+    },
   },
   actions: {
-      async getImagesFromAPI({ commit }, { _value }) {
-          const response = await axios.get(config.API_IMAGES_URI(_value));
-          commit("getImagesFromAPI", response.data )
-      }
+    async getImagesFromAPI({ commit }, galleryName) {
+      const response = await axios.get(config.API_IMAGES_URI(galleryName));
+      commit('getImagesFromAPI', response.data);
+    },
   },
   getters: {},
 };

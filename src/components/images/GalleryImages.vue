@@ -35,9 +35,7 @@ export default {
       count: 0,
     });
 
-    const images = computed(() => {
-      return store.state.images.images;
-    });
+    const images = computed(() => store.state.images.images);
 
     const api_images_uri = config.API_IMAGES_URI(props.name);
 

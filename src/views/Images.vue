@@ -25,7 +25,7 @@ export default {
     });
 
     // Computed properties
-    const galleryName = computed(() => router.params.galleryName);
+    const galleryName = computed(() => router.params.galleryName).value;
 
     onMounted(() => {
       store.dispatch('images/getImagesFromAPI', galleryName);
