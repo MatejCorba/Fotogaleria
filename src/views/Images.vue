@@ -1,15 +1,20 @@
 <template>
   <Header :title="galleryName.toUpperCase()" />
+  <div class="images-container">
+    <GalleryImages />
+  </div>
 </template>
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
+import GalleryImages from '../components/images/GalleryImages.vue';
 
 export default {
   components: {
     Header,
+    GalleryImages,
   },
   setup() {
     const router = useRoute();
