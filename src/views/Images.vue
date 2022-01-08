@@ -4,6 +4,7 @@
   <div class="images-container">
     <GalleryImages :name="galleryName" />
   </div>
+  <AddImagesModal />
 </template>
 
 <script>
@@ -13,12 +14,14 @@ import { useRoute } from 'vue-router';
 import GalleryImages from '../components/images/GalleryImages.vue';
 import { useStore } from 'vuex';
 import ArrowBack from '../components/images/ArrowBack.vue';
+import AddImagesModal from '../components/images/AddImagesModal.vue';
 
 export default {
   components: {
     Header,
     GalleryImages,
     ArrowBack,
+    AddImagesModal,
   },
   setup() {
     const store = useStore();
