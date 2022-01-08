@@ -4,7 +4,7 @@
   <div class="images-container">
     <GalleryImages :name="galleryName" />
   </div>
-  <AddImagesModal />
+  <AddImagesModal v-if="showImageModal" />
 </template>
 
 <script>
@@ -32,6 +32,7 @@ export default {
 
     // Computed properties
     const galleryName = computed(() => router.params.galleryName).value;
+    const showImageModal = computed(() => store.state.images.showImageModal);
 
     onMounted(() => {
       store.dispatch('images/getImagesFromAPI', galleryName);
@@ -44,6 +45,7 @@ export default {
     return {
       ...toRefs(state),
       galleryName,
+      showImageModal,
     };
   },
 };
