@@ -1,5 +1,6 @@
 <template>
   <Header :title="galleryName.toUpperCase()" />
+  <ArrowBack />
   <div class="images-container">
     <GalleryImages :name="galleryName" />
   </div>
@@ -11,11 +12,13 @@ import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
 import GalleryImages from '../components/images/GalleryImages.vue';
 import { useStore } from 'vuex';
+import ArrowBack from '../components/images/ArrowBack.vue';
 
 export default {
   components: {
     Header,
     GalleryImages,
+    ArrowBack,
   },
   setup() {
     const store = useStore();
