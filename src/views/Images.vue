@@ -4,7 +4,7 @@
   <div class="images-container">
     <GalleryImages :name="galleryName" />
   </div>
-  <AddImagesModal v-if="showImageModal" :galleryName="galleryName"/>
+  <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
 </template>
 
 <script>

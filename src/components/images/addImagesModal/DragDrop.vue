@@ -5,7 +5,7 @@
       SEM PRESUNTE FOTKY <br />
       alebo
     </p>
-    <UploadButton :galleryName="galleryName"/>
+    <UploadButton :galleryName="galleryName" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import UploadButton from './UploadButton.vue';
 export default {
   props: {
     galleryName: {
-      type: String
+      type: String,
     },
   },
   components: {

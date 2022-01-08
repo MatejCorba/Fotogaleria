@@ -27,11 +27,10 @@ export default {
     });
 
     const imageUpload = (files) => {
-      store.dispatch(
-        'images/uploadImagesToAPI',
-        [...files.target.files],
-        props.galleryName
-      );
+      store.dispatch('images/uploadImagesToAPI', {
+        fileArray: [...files.target.files],
+        galleryName: props.galleryName,
+      });
     };
 
     return {

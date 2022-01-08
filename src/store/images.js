@@ -29,7 +29,7 @@ export const images = {
       commit('changeModalVisibility');
     },
 
-    async uploadImagesToAPI({ commit }, fileArray, galleryName) {
+    async uploadImagesToAPI({ commit }, { fileArray, galleryName }) {
       let formdata, response;
       const header = {
         'Content-Type': 'multipart/form-data; boundary=--boundary',

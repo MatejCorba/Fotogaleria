@@ -15,13 +15,12 @@ export default {
       count: 0,
     });
 
-    const changeModalVisibility = () => store.dispatch(
-      'images/changeModalVisibility'
-    );
+    const changeModalVisibility = () =>
+      store.dispatch('images/changeModalVisibility');
 
     return {
       ...toRefs(state),
-      changeModalVisibility
+      changeModalVisibility,
     };
   },
 };
