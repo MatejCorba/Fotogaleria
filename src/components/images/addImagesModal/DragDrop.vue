@@ -5,7 +5,7 @@
       SEM PRESUNTE FOTKY <br />
       alebo
     </p>
-    <UploadButton />
+    <UploadButton :galleryName="galleryName"/>
   </div>
 </template>
 
@@ -14,6 +14,11 @@ import { reactive, toRefs } from 'vue';
 import UploadButton from './UploadButton.vue';
 
 export default {
+  props: {
+    galleryName: {
+      type: String
+    },
+  },
   components: {
     UploadButton,
   },
