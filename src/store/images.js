@@ -15,6 +15,10 @@ export const images = {
     changeModalVisibility(state) {
       state.showImageModal = !state.showImageModal;
     },
+
+    uploadImagesToAPI(state, file) {
+      state.images.push(file);
+    },
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
@@ -23,6 +27,26 @@ export const images = {
     },
     changeModalVisibility({ commit }) {
       commit('changeModalVisibility');
+    },
+
+    async uploadImagesToAPI({ commit }, fileArray, galleryName) {
+      let formdata, response;
+      const header = {
+        'Content-Type': 'multipart/form-data; boundary=--boundary',
+      };
+
+      fileArray.forEach(async (file) => {
+        formdata = new FormData();
+        formdata.append('image', file);
+
+        response = await axios.post(
+          config.API_IMAGES_URI(galleryName),
+          formdata,
+          header
+        );
+
+        commit('uploadImagesToAPI', response.data);
+      });
     },
   },
   getters: {},
