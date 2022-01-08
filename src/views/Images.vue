@@ -14,7 +14,7 @@ import { useRoute } from 'vue-router';
 import GalleryImages from '../components/images/GalleryImages.vue';
 import { useStore } from 'vuex';
 import ArrowBack from '../components/images/ArrowBack.vue';
-import AddImagesModal from '../components/images/AddImagesModal.vue';
+import AddImagesModal from '../components/images/addImagesModal/AddImagesModal.vue';
 
 export default {
   components: {
