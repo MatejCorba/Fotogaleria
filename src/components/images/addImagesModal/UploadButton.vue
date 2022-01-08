@@ -31,6 +31,8 @@ export default {
         fileArray: [...files.target.files],
         galleryName: props.galleryName,
       });
+
+      store.dispatch('images/changeModalVisibility');
     };
 
     return {
