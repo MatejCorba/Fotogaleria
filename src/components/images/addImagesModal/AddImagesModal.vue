@@ -7,6 +7,7 @@
     <button class="img-btn" @click="uploadImagesToAPI">
       <i class="fas fa-plus"></i> Pridať
     </button>
+    <span v-if="uploadEnabled">Počet nahraných obrázkov: {{ imageNum }}</span>
   </section>
 </template>
 
@@ -27,20 +28,24 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({
-      buttonUpload: false,
+      uploadEnabled: false,
       filesToUpload: {},
+      imageNum: 0
     });
 
     const changeModalVisibility = () =>
       store.dispatch('images/changeModalVisibility');
 
     const enableUploadButton = (files) => {
-      state.buttonUpload = true;
+      // Pocet nahranych obrazkov
+      state.imageNum = files.fileArray.length;
+      
+      state.uploadEnabled = true;
       state.filesToUpload = files;
     };
 
     const uploadImagesToAPI = () => {
-      if (!state.buttonUpload) return;
+      if (!state.uploadEnabled) return;
 
       store.dispatch('images/uploadImagesToAPI', state.filesToUpload);
       store.dispatch('images/changeModalVisibility');
