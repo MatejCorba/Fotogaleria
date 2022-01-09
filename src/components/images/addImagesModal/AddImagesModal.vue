@@ -61,4 +61,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+span {
+  color: darkblue;
+  margin-left: 12px;
+}
+</style>

@@ -42,12 +42,6 @@ export default {
       state.borderSolid = false;
     };
     const imageUpload = (files) => {
-      /*
-      store.dispatch('images/uploadImagesToAPI', {
-        fileArray: [...files.dataTransfer.files],
-        galleryName: props.galleryName,
-      });
-      */
       emit('uploadReady', {
         fileArray: [...files.dataTransfer.files],
         galleryName: props.galleryName,
