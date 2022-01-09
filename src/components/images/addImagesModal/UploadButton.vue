@@ -12,27 +12,33 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { useStore } from 'vuex';
 
 export default {
+  emits: ['uploaded'],
   props: {
     galleryName: {
       type: String,
     },
   },
-  setup(props) {
-    const store = useStore();
+  setup(props, { emit }) {
     const state = reactive({
       count: 0,
     });
 
     const imageUpload = (files) => {
+      /*
       store.dispatch('images/uploadImagesToAPI', {
         fileArray: [...files.target.files],
         galleryName: props.galleryName,
       });
 
+
       store.dispatch('images/changeModalVisibility');
+      */
+      emit('uploaded', {
+        fileArray: [...files.target.files],
+        galleryName: props.galleryName,
+      });
     };
 
     return {
