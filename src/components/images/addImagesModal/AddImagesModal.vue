@@ -102,4 +102,8 @@ export default {
   color: red;
   margin-left: 12px;
 }
+
+.img-btn {
+  cursor: pointer;
+}
 </style>
