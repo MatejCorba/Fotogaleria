@@ -14,13 +14,11 @@
     </p>
     <UploadButton :galleryName="galleryName" @uploaded="uploadedButton" />
   </div>
-
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
 import UploadButton from './UploadButton.vue';
-import { useStore } from 'vuex';
 
 export default {
   emits: ['uploadReady'],
@@ -33,9 +31,8 @@ export default {
     UploadButton,
   },
   setup(props, { emit }) {
-    const store = useStore();
     const state = reactive({
-      borderSolid: false
+      borderSolid: false,
     });
 
     const changeBorderSolid = () => {
@@ -45,18 +42,19 @@ export default {
       state.borderSolid = false;
     };
     const imageUpload = (files) => {
+      /*
       store.dispatch('images/uploadImagesToAPI', {
+        fileArray: [...files.dataTransfer.files],
+        galleryName: props.galleryName,
+      });
+      */
+      emit('uploadReady', {
         fileArray: [...files.dataTransfer.files],
         galleryName: props.galleryName,
       });
     };
 
-    const uploadedButton = (files) => {
-      // state.imageNum = files.fileArray.length;
-      // state.filesUploaded = true;
-
-      emit('uploadReady', files);
-    };
+    const uploadedButton = (files) => emit('uploadReady', files);
 
     return {
       ...toRefs(state),

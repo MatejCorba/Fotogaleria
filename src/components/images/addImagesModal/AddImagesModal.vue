@@ -30,7 +30,7 @@ export default {
     const state = reactive({
       uploadEnabled: false,
       filesToUpload: {},
-      imageNum: 0
+      imageNum: 0,
     });
 
     const changeModalVisibility = () =>
@@ -39,7 +39,7 @@ export default {
     const enableUploadButton = (files) => {
       // Pocet nahranych obrazkov
       state.imageNum = files.fileArray.length;
-      
+
       state.uploadEnabled = true;
       state.filesToUpload = files;
     };
