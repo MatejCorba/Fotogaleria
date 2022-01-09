@@ -12,8 +12,10 @@
       SEM PRESUNTE FOTKY <br />
       alebo
     </p>
-    <UploadButton :galleryName="galleryName" />
+    <UploadButton :galleryName="galleryName" @uploaded="uploadedButton" />
   </div>
+
+  <span v-if="filesUploaded">Nahral si {{ imageNum }} obrázky</span>
 </template>
 
 <script>
@@ -22,6 +24,7 @@ import UploadButton from './UploadButton.vue';
 import { useStore } from 'vuex';
 
 export default {
+  emits: ["uploadReady"],
   props: {
     galleryName: {
       type: String,
@@ -30,10 +33,12 @@ export default {
   components: {
     UploadButton,
   },
-  setup(props) {
+  setup(props, { emit }) {
     const store = useStore();
     const state = reactive({
       borderSolid: false,
+      filesUploaded: false,
+      imageNum: '',
     });
 
     const changeBorderSolid = () => {
@@ -49,11 +54,22 @@ export default {
       });
     };
 
+    const uploadedButton = (files) => {
+      let imageNum = files.fileArray.length;
+      state.imageNum = imageNum;
+      state.filesUploaded = true;
+
+      emit("uploadReady", files);
+
+
+    };
+
     return {
       ...toRefs(state),
       changeBorderSolid,
       changeBorderDotted,
       imageUpload,
+      uploadedButton,
     };
   },
 };
