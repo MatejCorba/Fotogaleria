@@ -47,6 +47,7 @@ export default {
 
     const enableUploadButton = (files) => {
       state.sameImages = false;
+      state.uploadEnabled = false;
 
       const sameImage = checkIfSameImages(files);
       if (sameImage) return sameImageError(sameImage);
