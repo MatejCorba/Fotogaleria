@@ -7,12 +7,18 @@
     <button class="img-btn" @click="uploadImagesToAPI">
       <i class="fas fa-plus"></i> Pridať
     </button>
-    <span v-if="uploadEnabled">Počet nahraných obrázkov: {{ imageNum }}</span>
+
+    <span v-if="uploadEnabled" class="images-uploaded"
+      >Počet nahraných obrázkov: {{ imageNum }}</span
+    >
+    <span v-if="sameImages" class="images-same"
+      >Obrázok "{{ sameImageName }}" sa už v tejto galérii nachádza</span
+    >
   </section>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
 import DragDrop from './DragDrop.vue';
 
@@ -31,18 +37,43 @@ export default {
       uploadEnabled: false,
       filesToUpload: {},
       imageNum: 0,
+
+      sameImages: false,
+      sameImageName: '',
     });
 
     const changeModalVisibility = () =>
       store.dispatch('images/changeModalVisibility');
 
     const enableUploadButton = (files) => {
+      state.sameImages = false;
+
+      const sameImage = checkIfSameImages(files);
+      if (sameImage) return sameImageError(sameImage);
+
       // Pocet nahranych obrazkov
       state.imageNum = files.fileArray.length;
 
       state.uploadEnabled = true;
       state.filesToUpload = files;
     };
+
+    const checkIfSameImages = (files) => {
+      for (let image of files.fileArray) {
+        for (let uploadedImage of images.value) {
+          if (image.name == uploadedImage.path) return image.name;
+        }
+      }
+
+      return false;
+    };
+
+    const sameImageError = (sameImageName) => {
+      state.sameImages = true;
+      state.sameImageName = sameImageName;
+    };
+
+    const images = computed(() => store.state.images.images);
 
     const uploadImagesToAPI = () => {
       if (!state.uploadEnabled) return;
@@ -62,8 +93,13 @@ export default {
 </script>
 
 <style scoped>
-span {
+.images-uploaded {
   color: darkblue;
+  margin-left: 12px;
+}
+
+.images-same {
+  color: red;
   margin-left: 12px;
 }
 </style>
