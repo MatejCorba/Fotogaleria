@@ -353,6 +353,11 @@ footer {
   margin: 20px 10px;
   height: 300px;
 }
+
+.drop-border-solid {
+   border: solid grey;
+}
+
 .text-center {
   font-family: 'Nunito';
   font-size: 15px;
