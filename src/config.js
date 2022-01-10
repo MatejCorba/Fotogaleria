@@ -4,13 +4,21 @@ export const config = {
   API_GALLERIES_URI: (id = false, preview = false) =>
     `http://localhost:3000/api/galleries${id ? '/' + id : ``}` +
     (preview
-      ? `?width=${config.preview_width}&height=${config.preview_height}`
+      ? config.preview_width && config.preview_height
+        ? `?width=${config.preview_width}&height=${config.preview_height}`
+        : config.preview_width
+        ? `?width=${config.preview_width}`
+        : `?height=${config.preview_height}`
       : ``),
   API_IMAGES_URI: (galleryName, id = false, preview = false) =>
     `http://localhost:3000/api/galleries/images/${galleryName}${
       id ? '/' + id : ``
     }` +
     (preview
-      ? `?width=${config.preview_width}&height=${config.preview_height}`
+      ? config.preview_width && config.preview_height
+        ? `?width=${config.preview_width}&height=${config.preview_height}`
+        : config.preview_width
+        ? `?width=${config.preview_width}`
+        : `?height=${config.preview_height}`
       : ``),
 };
