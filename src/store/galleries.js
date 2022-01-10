@@ -37,11 +37,10 @@ export const galleries = {
           name: name,
         });
         commit('addNewGalery', response.data);
-      } catch(error) {
-          alert(error.response.data)
+      } catch (error) {
+        alert(error.response.data);
       }
     },
   },
   getters: {},
 };
-

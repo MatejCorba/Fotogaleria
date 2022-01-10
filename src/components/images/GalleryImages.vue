@@ -1,9 +1,9 @@
 <template>
   <div v-for="image in images" :key="image._id" class="images">
-    <a :href="`${api_images_uri}${image._id}`" data-lightbox="Gallery_1">
+    <a :href="config.API_IMAGES_URI(name, image._id)" data-lightbox="Gallery_1">
       <img
         class="img"
-        :src="`${api_images_uri}${image._id}`"
+        :src="config.API_IMAGES_URI(name, image._id, (preview = true))"
         :alt="image.name"
         :title="image.name"
       />
@@ -29,7 +29,7 @@ export default {
       type: String,
     },
   },
-  setup(props) {
+  setup() {
     const store = useStore();
     const state = reactive({
       count: 0,
@@ -37,12 +37,10 @@ export default {
 
     const images = computed(() => store.state.images.images);
 
-    const api_images_uri = config.API_IMAGES_URI(props.name);
-
     return {
       ...toRefs(state),
       images,
-      api_images_uri,
+      config,
     };
   },
 };
