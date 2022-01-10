@@ -95,13 +95,19 @@ export default {
 
 <style scoped>
 .images-uploaded {
-  color: darkblue;
+  color: white;
+  background: darkblue;
   margin-left: 12px;
+  font-weight: bold;
+  padding: 2px 10px;
 }
 
 .images-same {
-  color: red;
+  color: white;
+  background: red;
   margin-left: 12px;
+  font-weight: bold;
+  padding: 2px 10px;
 }
 
 .img-btn {
