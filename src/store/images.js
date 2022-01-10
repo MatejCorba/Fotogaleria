@@ -36,16 +36,20 @@ export const images = {
       };
 
       fileArray.forEach(async (file) => {
-        formdata = new FormData();
-        formdata.append('image', file);
+        try {
+          formdata = new FormData();
+          formdata.append('image', file);
 
-        response = await axios.post(
-          config.API_IMAGES_URI(galleryName),
-          formdata,
-          header
-        );
+          response = await axios.post(
+            config.API_IMAGES_URI(galleryName),
+            formdata,
+            header
+          );
 
-        commit('uploadImagesToAPI', response.data);
+          commit('uploadImagesToAPI', response.data);
+        } catch (error) {
+          alert(error.response.data);
+        }
       });
     },
   },
