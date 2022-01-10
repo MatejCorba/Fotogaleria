@@ -1,5 +1,16 @@
 export const config = {
-  API_GALLERIES_URI: 'http://localhost:3000/api/galleries/',
-  API_IMAGES_URI: (galleryName) =>
-    `http://localhost:3000/api/galleries/images/${galleryName}/`,
+  preview_width: '200',
+  preview_height: '200',
+  API_GALLERIES_URI: (id = false, preview = false) =>
+    `http://localhost:3000/api/galleries${id ? '/' + id : ``}` +
+    (preview
+      ? `?width=${config.preview_width}&height=${config.preview_height}`
+      : ``),
+  API_IMAGES_URI: (galleryName, id = false, preview = false) =>
+    `http://localhost:3000/api/galleries/images/${galleryName}${
+      id ? '/' + id : ``
+    }` +
+    (preview
+      ? `?width=${config.preview_width}&height=${config.preview_height}`
+      : ``),
 };
