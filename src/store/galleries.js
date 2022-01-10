@@ -24,7 +24,7 @@ export const galleries = {
 
   actions: {
     async getGalleriesFromAPI({ commit }) {
-      const response = await axios.get(config.API_GALLERIES_URI);
+      const response = await axios.get(config.API_GALLERIES_URI());
       commit('getGalleriesFromAPI', response.data);
     },
     changeModalVisibility({ commit }) {
@@ -33,7 +33,7 @@ export const galleries = {
 
     async addNewGallery({ commit }, name) {
       try {
-        const response = await axios.post(config.API_GALLERIES_URI, {
+        const response = await axios.post(config.API_GALLERIES_URI(), {
           name: name,
         });
         commit('addNewGalery', response.data);
