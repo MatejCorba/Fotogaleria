@@ -34,7 +34,7 @@ export const galleries = {
     async addNewGallery({ commit }, name) {
       try {
         const response = await axios.post(config.API_GALLERIES_URI(), {
-          name: name,
+          name: name.trim().toUpperCase(),
         });
         commit('addNewGalery', response.data);
       } catch (error) {
