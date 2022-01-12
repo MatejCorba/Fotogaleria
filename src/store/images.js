@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { config } from '../config/config';
+import config from '../config/config';
 
 export const images = {
   namespaced: true,
@@ -22,7 +22,9 @@ export const images = {
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
-      const response = await axios.get(config.API_IMAGES_URI(galleryName));
+      const response = await axios.get(
+        config.API_IMAGES_URI({ gallery: galleryName })
+      );
       commit('getImagesFromAPI', response.data);
     },
     changeModalVisibility({ commit }) {
@@ -41,7 +43,7 @@ export const images = {
           formdata.append('image', file);
 
           response = await axios.post(
-            config.API_IMAGES_URI(galleryName),
+            config.API_IMAGES_URI({ gallery: galleryName }),
             formdata,
             header
           );

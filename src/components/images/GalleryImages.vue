@@ -1,9 +1,18 @@
 <template>
   <div v-for="image in images" :key="image._id" class="images">
-    <a :href="config.API_IMAGES_URI(name, image._id)" data-lightbox="Gallery_1">
+    <a
+      :href="config.API_IMAGES_URI({ gallery: name, id: image._id })"
+      data-lightbox="Gallery_1"
+    >
       <img
         class="img"
-        :src="config.API_IMAGES_URI(name, image._id, (preview = true))"
+        :src="
+          config.API_IMAGES_URI({
+            gallery: name,
+            id: image._id,
+            preview: true,
+          })
+        "
         :alt="image.name"
         :title="image.name"
       />
@@ -16,7 +25,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import NewImageIcon from './NewImageIcon.vue';
-import { config } from '../../config/config';
+import config from '../../config/config';
 import { useStore } from 'vuex';
 
 export default {

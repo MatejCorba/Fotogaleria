@@ -10,7 +10,7 @@
     >
       <img
         class="img-gallery"
-        :src="config.API_GALLERIES_URI(gallery._id, (preview = true))"
+        :src="config.API_GALLERIES_URI({ id: gallery._id, preview: true })"
         :alt="gallery.name"
         :title="gallery.name"
       />
@@ -23,7 +23,7 @@
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
-import { config } from '../../config/config';
+import config from '../../config/config';
 import NewGalleryIcon from './NewGalleryIcon.vue';
 import { useStore } from 'vuex';
 
