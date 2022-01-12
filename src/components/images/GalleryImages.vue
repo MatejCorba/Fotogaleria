@@ -16,7 +16,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import NewImageIcon from './NewImageIcon.vue';
-import { config } from '../../config';
+import { config } from '../../config/config';
 import { useStore } from 'vuex';
 
 export default {
