@@ -1,8 +1,9 @@
-const runInDocker = false;
-const preview_width = '300';
-const preview_height = '';
+import { API_BASE_URL, PREVIEW_WIDTH, PREVIEW_HEIGHT } from './config.json';
 
 const toQueryString = (width, height) => {
+  if (!(width || height))
+    throw new Error('Nezadal si ani jeden rozmer nahladovych obrazkov.');
+
   const previewSize = {};
   if (width) previewSize.width = width;
   if (height) previewSize.height = height;
@@ -10,16 +11,32 @@ const toQueryString = (width, height) => {
   return '?' + new URLSearchParams(previewSize).toString();
 };
 
-export const config = {
-  base_url: runInDocker ? 'fotogaleria' : 'localhost:3000',
-  previewSizeQuery: toQueryString(preview_width, preview_height),
+const config = {
+  previewSizeQuery: toQueryString(PREVIEW_WIDTH, PREVIEW_HEIGHT),
+  exifQuery: '?image=false',
 
-  API_GALLERIES_URI: (id = '', preview = false) =>
-    `http://${config.base_url}/api/galleries${id ? '/' + id : ``}` +
-    (preview ? config.previewSizeQuery : ``),
+  API_GALLERIES_URI: ({ id, preview, exif }) =>
+    `http://${API_BASE_URL}/api/galleries${id ? '/' + id : ``}` +
+    (id && preview
+      ? config.previewSizeQuery
+      : id && exif
+      ? config.exifQuery
+      : ``),
 
-  API_IMAGES_URI: (galleryName, id = '', preview = false) =>
-    `http://${config.base_url}/api/galleries/images/${galleryName}${
-      id ? '/' + id : ``
-    }` + (preview ? config.previewSizeQuery : ``),
+  API_IMAGES_URI: ({ gallery, id, preview, exif }) => {
+    if (!gallery) throw new Error('Neposlal si meno galérie.');
+
+    return (
+      `http://${API_BASE_URL}/api/galleries/images/${gallery}${
+        id ? '/' + id : ``
+      }` +
+      (id && preview
+        ? config.previewSizeQuery
+        : id && exif
+        ? config.exifQuery
+        : ``)
+    );
+  },
 };
+
+export default config;
