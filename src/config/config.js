@@ -27,7 +27,7 @@ const config = {
     if (!gallery) throw new Error('Neposlal si meno galérie.');
 
     return (
-      `http://${API_BASE_URL}/api/galleries/images/${gallery}${
+      `${API_BASE_URL}/api/galleries/images/${gallery}${
         id ? '/' + id : ``
       }` +
       (id && preview
