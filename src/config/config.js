@@ -16,7 +16,7 @@ const config = {
   exifQuery: '?image=false',
 
   API_GALLERIES_URI: ({ id, preview, exif }) =>
-    `http://${API_BASE_URL}/api/galleries${id ? '/' + id : ``}` +
+    `${API_BASE_URL}/api/galleries${id ? '/' + id : ``}` +
     (id && preview
       ? config.previewSizeQuery
       : id && exif
