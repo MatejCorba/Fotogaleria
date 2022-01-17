@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config/config';
 
-export const images = {
+const images = {
   namespaced: true,
 
   state: () => ({
@@ -57,3 +57,5 @@ export const images = {
   },
   getters: {},
 };
+
+export default images;

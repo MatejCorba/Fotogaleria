@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config/config';
 
-export const galleries = {
+const galleries = {
   namespaced: true,
 
   state: () => ({
@@ -44,3 +44,5 @@ export const galleries = {
   },
   getters: {},
 };
+
+export default galleries;
