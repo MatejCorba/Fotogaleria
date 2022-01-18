@@ -61,4 +61,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.drop-border-solid {
+   border: solid grey;
+}
+
+</style>
