@@ -21,7 +21,6 @@
   gap: 30px 30px;
   margin-top: 50px;
 }
-
 .img-gallery {
   height: 250px;
   width: 350px;
@@ -29,6 +28,7 @@
   border-top-right-radius: 15px;
   position: relative;
 }
+
 .text-block {
   position: absolute;
   top: 150px;
@@ -63,6 +63,7 @@
   margin: 30px;
   margin-top: 10px;
 }
+
 .gallery-hover-efect {
   transition: all 0.3s ease-in-out;
 }
@@ -105,6 +106,14 @@
   .image-upload-button {
     left: 32%;
   }
+  .img_menu {
+    left: 5px;
+    bottom: 1150px;
+  }
+  .menu {
+    left: 15px;
+    top: 180px;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -138,6 +147,14 @@
   .image-upload-button {
     left: 35%;
   }
+  .img_menu {
+    left: 355px;
+    bottom: 1180px;
+  }
+  .menu {
+    left: 360px;
+    top: 180px;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -155,7 +172,7 @@
   .center {
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 75%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -178,6 +195,14 @@
   }
   .image-upload-button {
     left: 39%;
+  }
+  .img_menu {
+    left: 355px;
+    bottom: 350px;
+  }
+  .menu {
+    left: 360px;
+    top: 180px;
   }
 }
 
@@ -202,6 +227,14 @@
   .image-upload-button {
     left: 39%;
   }
+  .img_menu {
+    left: 355px;
+    bottom: 350px;
+  }
+  .menu {
+    left: 360px;
+    top: 180px;
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
@@ -224,6 +257,14 @@
   .image-upload-button {
     left: 39%;
   }
+  .img_menu {
+    left: 355px;
+    bottom: 90px;
+  }
+  .menu {
+    left: 360px;
+    top: 180px;
+  }
 }
 
 .overlay {
@@ -235,7 +276,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 12;
 }
 .overlay-on {
   display: block;
@@ -243,17 +284,18 @@
 .overlay-off {
   display: none;
 }
+
 .modal {
   height: 90px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
-  z-index: 5;
+  z-index: 12;
 }
 .add-image-modal {
   height: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
-  z-index: 5;
+  z-index: 13;
 }
 .add-btn {
   float: right;
@@ -308,20 +350,22 @@ hr {
 .images-container {
   display: grid;
   justify-content: center;
-  grid-gap: 40px 40px;
+  grid-gap: 30px 30px;
   margin-top: 50px;
+}
+.images {
+  position: relative;
+  top: 300px;
 }
 .img {
   position: relative;
   height: 250px;
   width: 350px;
-  position: relative;
   border-radius: 5px;
-  top: 300px;
   transition: 0.3s;
 }
-.images :hover {
-  margin-top: -10px;
+.images_hover_effect :hover {
+  margin-top: -8px;
 }
 .plus-images {
   height: 250px;
@@ -353,7 +397,6 @@ footer {
   margin: 20px 10px;
   height: 300px;
 }
-
 .text-center {
   font-family: 'Nunito';
   font-size: 15px;
