@@ -1,5 +1,5 @@
 <template>
-  <div v-for="image in images" :key="image._id" class="images">
+  <div v-for="image in images" :key="image._id" class="images images_hover_effect">
     <a
       :href="config.API_IMAGES_URI({ gallery: name, id: image._id })"
       data-lightbox="Gallery_1"
