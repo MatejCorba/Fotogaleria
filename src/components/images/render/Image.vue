@@ -1,5 +1,5 @@
 <template>
-  <div v-for="image in images" :key="image._id" class="images images_hover_effect">
+  <div class="images images_hover_effect">
     <a
       :href="config.API_IMAGES_URI({ gallery: name, id: image._id })"
       data-lightbox="Gallery_1"
@@ -18,38 +18,29 @@
       />
     </a>
   </div>
-
-  <NewImageIcon />
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
-import NewImageIcon from './NewImageIcon.vue';
-import config from '../../config/config';
-import { useStore } from 'vuex';
+import { reactive, toRefs } from 'vue';
+import config from '../../../config/config';
 
 export default {
-  components: {
-    NewImageIcon,
-  },
-
   props: {
-    name: {
-      type: String,
-    },
+      image: {
+          type: Object, 
+      },
+      name:{
+          type: String,
+      }
   },
   setup() {
-    const store = useStore();
     const state = reactive({
       count: 0,
     });
 
-    const images = computed(() => store.state.images.images);
-
     return {
       ...toRefs(state),
-      images,
-      config,
+      config
     };
   },
 };
