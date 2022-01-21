@@ -7,9 +7,17 @@
       scale: gallery.popUp,
     }"
   >
+    <!--Vysvetlenie ":to" propu-->
+    <!--Pokial je gallery.popUp nie je nastavene na true (nenachazame sa v options menu), tak router bude smerovat do Images componentu-->
+    <!--Pokial je gallery.popUp nastaveny na true (nachadzame sa v options menu), tak router nás ani po kliknutí na galériu nikam nepresmeruje -->
     <router-link
-      :to="{ name: `Images`, params: { galleryName: gallery.name } }"
+      :to="
+        !gallery.popUp
+          ? { name: `Images`, params: { galleryName: gallery.name } }
+          : ''
+      "
       style="text-decoration: none; color: inherit"
+      :class="{ 'cursor-default': gallery.popUp }"
     >
       <transition name="pop">
         <GalleryPopUp v-if="gallery.popUp" />
@@ -60,5 +68,9 @@ export default {
 .pop-leave-to {
   opacity: 0;
   transform: translateX(-25%);
+}
+
+.cursor-default {
+  cursor: default;
 }
 </style>
