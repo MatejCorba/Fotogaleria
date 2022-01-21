@@ -1,13 +1,19 @@
 <template>
   <div
-    class="gallery gallery-hover-efect"
-    :class="{ gallery_selected: gallery.popUp }"
+    class="gallery"
+    :class="{
+      gallery_selected: gallery.popUp,
+      'gallery-hover-efect': !gallery.popUp,
+      scale: gallery.popUp,
+    }"
   >
     <router-link
       :to="{ name: `Images`, params: { galleryName: gallery.name } }"
       style="text-decoration: none; color: inherit"
     >
-      <GalleryPopUp v-if="gallery.popUp" />
+      <transition name="pop">
+        <GalleryPopUp v-if="gallery.popUp" />
+      </transition>
       <img
         class="img-gallery"
         :src="config.API_GALLERIES_URI({ id: gallery._id, preview: true })"
@@ -46,4 +52,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.scale {
+  transform: scale(1.05);
+}
+
+.pop-enter-active,
+.pop-leave-active {
+  transition: all 0.1s ease-in;
+}
+.pop-enter-from,
+.pop-leave-to {
+  opacity: 0;
+  transform: translateX(-25%);
+}
+</style>
