@@ -17,7 +17,6 @@
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
-import config from '../../../config/config';
 import NewGalleryIcon from '../NewGalleryIcon.vue';
 import { useStore } from 'vuex';
 import Gallery from './Gallery.vue';
@@ -54,7 +53,6 @@ export default {
 
     return {
       ...toRefs(state),
-      config,
       galleries,
       showPopUp,
       closePopUp,
