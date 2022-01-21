@@ -14,12 +14,7 @@
       <transition name="pop">
         <GalleryPopUp v-if="gallery.popUp" />
       </transition>
-      <img
-        class="img-gallery"
-        :src="config.API_GALLERIES_URI({ id: gallery._id, preview: true })"
-        :alt="gallery.name"
-        :title="gallery.name"
-      />
+      <Preview :gallery="gallery" />
       <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
     </router-link>
   </div>
@@ -28,11 +23,12 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import GalleryPopUp from './GalleryPopUp.vue';
-import config from '../../../config/config';
+import Preview from './Preview.vue';
 
 export default {
   components: {
     GalleryPopUp,
+    Preview,
   },
   props: {
     gallery: {
@@ -46,7 +42,6 @@ export default {
 
     return {
       ...toRefs(state),
-      config,
     };
   },
 };
