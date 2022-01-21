@@ -7,6 +7,7 @@ import lightbox from 'lightbox2';
 // css
 import './css/style.css';
 import '../node_modules/lightbox2/src/css/lightbox.css';
+import './css/galleryPopUp.css';
 
 // Lightbox config
 lightbox.option({
