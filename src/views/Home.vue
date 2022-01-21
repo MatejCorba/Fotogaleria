@@ -12,7 +12,7 @@
 <script>
 import { reactive, toRefs, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
-import Galleries from '../components/galleries/Galleries.vue';
+import Galleries from '../components/galleries/render/Galleries.vue';
 import Header from '../components/Header.vue';
 import NewGalleryModal from '../components/galleries/NewGalleryModal.vue';
 
