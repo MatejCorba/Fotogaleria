@@ -63,7 +63,6 @@ export default {
 
 <style scoped>
 .drop-border-solid {
-   border: solid grey;
+  border: solid grey;
 }
-
 </style>
