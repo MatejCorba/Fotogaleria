@@ -17,13 +17,16 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   props: {
     galleryIndex: {
       type: Number,
+    },
+    popUp: {
+      type: Boolean,
     },
   },
   setup(props, { emit }) {
@@ -43,6 +46,12 @@ export default {
     const changeGalleryName = () => {
       emit('changeGalleryName');
     };
+
+    onMounted(() => {
+      if (props.popUp) {
+        emit('resetGalleryName');
+      }
+    });
 
     return {
       ...toRefs(state),

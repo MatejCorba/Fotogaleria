@@ -21,10 +21,12 @@
     >
       <transition name="pop">
         <GalleryPopUp
+          :popUp="gallery.popUp"
           v-if="gallery.popUp"
           :galleryIndex="galleryIndex"
           @disableOverlay="disableOverlay"
           @changeGalleryName="changeGalleryName"
+          @resetGalleryName="resetGalleryName"
         />
       </transition>
       <Preview :gallery="gallery" />
@@ -91,10 +93,15 @@ export default {
       disableOverlay();
     };
 
+    const resetGalleryName = () => {
+      state.inputValue = props.gallery.name.toUpperCase();
+    };
+
     return {
       ...toRefs(state),
       disableOverlay,
       changeGalleryName,
+      resetGalleryName,
     };
   },
 };
