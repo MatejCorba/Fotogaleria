@@ -17,7 +17,7 @@ const images = {
     },
 
     uploadImagesToAPI(state, file) {
-      state.images.push(file);
+      state.images = [...state.images, file];
     },
     showPopUp(state, index) {
       state.images[index].popUp = true;
