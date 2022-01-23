@@ -26,6 +26,10 @@ const galleries = {
     closePopUp(state, index) {
       state.galleries[index].popUp = false;
     },
+    deleteGallery(state, id) {
+      const index = state.galleries.findIndex((gallery) => gallery._id === id);
+      state.galleries.splice(index, 1);
+    },
   },
 
   actions: {
@@ -41,6 +45,15 @@ const galleries = {
     },
     closePopUp({ commit }, index) {
       commit('closePopUp', index);
+    },
+
+    async deleteGallery({ commit }, id) {
+      try {
+        await axios.delete(config.API_GALLERIES_URI({ id: id }));
+        commit('deleteGallery', id);
+      } catch (error) {
+        alert(error.response.data);
+      }
     },
 
     async addNewGallery({ commit }, name) {

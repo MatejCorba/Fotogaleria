@@ -1,10 +1,12 @@
 <template>
   <Gallery
     @contextmenu.prevent="showPopUp"
+    @disableOverlay="disableOverlay"
     v-for="gallery in galleries"
     :key="gallery._id"
     :id="gallery._id"
     :gallery="gallery"
+    :galleryIndex="galleryIndex"
   />
 
   <div
@@ -45,6 +47,9 @@ export default {
 
       store.dispatch('galleries/showPopUp', state.galleryIndex);
     };
+    const disableOverlay = () => {
+      state.showOverlay = false;
+    };
 
     const closePopUp = () => {
       state.showOverlay = false;
@@ -55,6 +60,7 @@ export default {
     return {
       ...toRefs(state),
       galleries,
+      disableOverlay,
       showPopUp,
       closePopUp,
     };

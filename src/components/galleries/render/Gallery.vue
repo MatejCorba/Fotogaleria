@@ -20,7 +20,11 @@
       :class="{ 'cursor-default': gallery.popUp }"
     >
       <transition name="pop">
-        <GalleryPopUp v-if="gallery.popUp" />
+        <GalleryPopUp
+          v-if="gallery.popUp"
+          :galleryIndex="galleryIndex"
+          @disableOverlay="disableOverlay"
+        />
       </transition>
       <Preview :gallery="gallery" />
       <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
@@ -42,14 +46,22 @@ export default {
     gallery: {
       type: Object,
     },
+    galleryIndex: {
+      type: Number,
+    },
   },
-  setup() {
+  setup(props, { emit }) {
     const state = reactive({
       count: 0,
     });
 
+    const disableOverlay = () => {
+      emit('disableOverlay');
+    };
+
     return {
       ...toRefs(state),
+      disableOverlay,
     };
   },
 };
