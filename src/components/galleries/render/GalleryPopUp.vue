@@ -7,7 +7,7 @@
         >
       </li>
 
-      <li>
+      <li @click="changeGalleryName">
         <a class="option_menu option_menu_hover" href="#"
           ><i class="far fa-edit"></i> PREMENOVAŤ</a
         >
@@ -40,10 +40,14 @@ export default {
       store.dispatch('galleries/deleteGallery', id);
       emit('disableOverlay');
     };
+    const changeGalleryName = () => {
+      emit('changeGalleryName');
+    };
 
     return {
       ...toRefs(state),
       deleteGallery,
+      changeGalleryName,
     };
   },
 };

@@ -30,6 +30,10 @@ const galleries = {
       const index = state.galleries.findIndex((gallery) => gallery._id === id);
       state.galleries.splice(index, 1);
     },
+    changeGalleryName(state, { newName, id }) {
+      const index = state.galleries.findIndex((gallery) => gallery._id === id);
+      state.galleries[index].name = newName;
+    },
   },
 
   actions: {
@@ -62,6 +66,21 @@ const galleries = {
           name: name.trim().toUpperCase(),
         });
         commit('addNewGalery', response.data);
+      } catch (error) {
+        alert(error.response.data);
+      }
+    },
+
+    async changeGalleryName({ commit }, { newName, id }) {
+      try {
+        await axios.put(config.API_GALLERIES_URI({ id: id }), {
+          name: newName,
+        });
+
+        commit('changeGalleryName', {
+          newName: newName,
+          id: id,
+        });
       } catch (error) {
         alert(error.response.data);
       }

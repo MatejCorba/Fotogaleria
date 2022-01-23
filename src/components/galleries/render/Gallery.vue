@@ -24,18 +24,29 @@
           v-if="gallery.popUp"
           :galleryIndex="galleryIndex"
           @disableOverlay="disableOverlay"
+          @changeGalleryName="changeGalleryName"
         />
       </transition>
       <Preview :gallery="gallery" />
-      <p class="gallery-name">{{ gallery.name.toUpperCase() }}</p>
+      <p v-if="!gallery.popUp" class="gallery-name">
+        {{ gallery.name.toUpperCase() }}
+      </p>
+      <input
+        v-model="inputValue"
+        @keyup.enter="changeGalleryName"
+        type="text"
+        v-if="gallery.popUp"
+        class="gallery-name input"
+      />
     </router-link>
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import GalleryPopUp from './GalleryPopUp.vue';
 import Preview from './Preview.vue';
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -51,17 +62,39 @@ export default {
     },
   },
   setup(props, { emit }) {
+    const store = useStore();
     const state = reactive({
-      count: 0,
+      inputValue: props.gallery.name.toUpperCase(),
     });
 
     const disableOverlay = () => {
       emit('disableOverlay');
     };
 
+    // Computed properties
+    const galleries = computed(() => store.state.galleries.galleries);
+
+    const changeGalleryName = () => {
+      const id = galleries.value[props.galleryIndex]._id;
+      // Premenovat galeriu v API
+      // Prfemenovat galeriu v poli (vuex)
+      store.dispatch('galleries/changeGalleryName', {
+        newName: state.inputValue,
+        id: id,
+      });
+      // Zavrieť popUp
+      setTimeout(() => {
+        store.dispatch('galleries/closePopUp', props.galleryIndex);
+      }, 2);
+
+      // Zavriet overlay
+      disableOverlay();
+    };
+
     return {
       ...toRefs(state),
       disableOverlay,
+      changeGalleryName,
     };
   },
 };
@@ -84,5 +117,19 @@ export default {
 
 .cursor-default {
   cursor: default;
+}
+
+.input {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font: 0.9em/1.5em 'handwriting', sans-serif;
+  border: none;
+  padding: 0 10px;
+  margin: 0;
+  width: 240px;
+  background: none;
 }
 </style>
