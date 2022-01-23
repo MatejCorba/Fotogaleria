@@ -89,6 +89,7 @@ export default {
       store.dispatch('galleries/changeGalleryName', {
         newName: state.inputValue,
         id: id,
+        index: props.galleryIndex,
       });
       // Zavrieť popUp
       setTimeout(() => {

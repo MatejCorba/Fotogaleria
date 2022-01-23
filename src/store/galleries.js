@@ -26,12 +26,10 @@ const galleries = {
     closePopUp(state, index) {
       state.galleries[index].popUp = false;
     },
-    deleteGallery(state, id) {
-      const index = state.galleries.findIndex((gallery) => gallery._id === id);
+    deleteGallery(state, index) {
       state.galleries.splice(index, 1);
     },
-    changeGalleryName(state, { newName, id }) {
-      const index = state.galleries.findIndex((gallery) => gallery._id === id);
+    changeGalleryName(state, { newName, index }) {
       state.galleries[index].name = newName;
     },
   },
@@ -51,12 +49,17 @@ const galleries = {
       commit('closePopUp', index);
     },
 
-    async deleteGallery({ commit }, id) {
+    async deleteGallery({ commit }, { id, index }) {
       try {
         await axios.delete(config.API_GALLERIES_URI({ id: id }));
-        commit('deleteGallery', id);
+        commit('deleteGallery', index);
       } catch (error) {
-        alert(error.response.data);
+        commit('closePopUp', index);
+
+        // Pockame 180ms, kým sa zatvorí popUp a az tak zobrazime alert
+        setTimeout(() => {
+          alert(error.response.data);
+        }, 180);
       }
     },
 
@@ -71,7 +74,7 @@ const galleries = {
       }
     },
 
-    async changeGalleryName({ commit }, { newName, id }) {
+    async changeGalleryName({ commit }, { newName, id, index }) {
       try {
         await axios.put(config.API_GALLERIES_URI({ id: id }), {
           name: newName,
@@ -79,10 +82,15 @@ const galleries = {
 
         commit('changeGalleryName', {
           newName: newName,
-          id: id,
+          index: index,
         });
       } catch (error) {
-        alert(error.response.data);
+        commit('closePopUp', index);
+
+        // Pockame 180ms, kým sa zatvorí popUp a az tak zobrazime alert
+        setTimeout(() => {
+          alert(error.response.data);
+        }, 180);
       }
     },
   },

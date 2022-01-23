@@ -40,7 +40,10 @@ export default {
 
     const deleteGallery = () => {
       const id = galleries.value[props.galleryIndex]._id;
-      store.dispatch('galleries/deleteGallery', id);
+      store.dispatch('galleries/deleteGallery', {
+        id: id,
+        index: props.galleryIndex,
+      });
       emit('disableOverlay');
     };
     const changeGalleryName = () => {
