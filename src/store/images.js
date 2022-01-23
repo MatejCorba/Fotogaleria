@@ -19,6 +19,12 @@ const images = {
     uploadImagesToAPI(state, file) {
       state.images.push(file);
     },
+    showPopUp(state, index) {
+      state.images[index].popUp = true;
+    },
+    closePopUp(state, index) {
+      state.images[index].popUp = false;
+    },
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
@@ -29,6 +35,12 @@ const images = {
     },
     changeModalVisibility({ commit }) {
       commit('changeModalVisibility');
+    },
+    showPopUp({ commit }, index) {
+      commit('showPopUp', index);
+    },
+    closePopUp({ commit }, index) {
+      commit('closePopUp', index);
     },
 
     async uploadImagesToAPI({ commit }, { fileArray, galleryName }) {

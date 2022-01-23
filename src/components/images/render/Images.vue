@@ -49,12 +49,12 @@ export default {
         (gallery) => gallery._id === clicked_id
       );
 
-      store.state.images.images[state.imageIndex].popUp = true;
+      store.dispatch('images/showPopUp', state.imageIndex);
     };
 
     const closePopUp = () => {
       state.showOverlay = false;
-      store.state.images.images[state.imageIndex].popUp = false;
+      store.dispatch('images/closePopUp', state.imageIndex);
     };
 
     return {

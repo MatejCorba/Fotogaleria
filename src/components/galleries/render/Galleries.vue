@@ -43,12 +43,13 @@ export default {
         (gallery) => gallery._id === clicked_id
       );
 
-      store.state.galleries.galleries[state.galleryIndex].popUp = true;
+      store.dispatch('galleries/showPopUp', state.galleryIndex);
     };
 
     const closePopUp = () => {
       state.showOverlay = false;
-      store.state.galleries.galleries[state.galleryIndex].popUp = false;
+
+      store.dispatch('galleries/closePopUp', state.galleryIndex);
     };
 
     return {

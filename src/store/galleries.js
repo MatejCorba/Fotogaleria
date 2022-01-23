@@ -20,6 +20,12 @@ const galleries = {
     addNewGalery(state, newGallery) {
       state.galleries.push(newGallery);
     },
+    showPopUp(state, index) {
+      state.galleries[index].popUp = true;
+    },
+    closePopUp(state, index) {
+      state.galleries[index].popUp = false;
+    },
   },
 
   actions: {
@@ -29,6 +35,12 @@ const galleries = {
     },
     changeModalVisibility({ commit }) {
       commit('changeModalVisibility');
+    },
+    showPopUp({ commit }, index) {
+      commit('showPopUp', index);
+    },
+    closePopUp({ commit }, index) {
+      commit('closePopUp', index);
     },
 
     async addNewGallery({ commit }, name) {
