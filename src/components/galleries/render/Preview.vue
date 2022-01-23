@@ -1,7 +1,10 @@
 <template>
   <img
     class="img-gallery"
-    :src="config.API_GALLERIES_URI({ id: gallery._id, preview: true })"
+    :src="
+      config.API_GALLERIES_URI({ id: gallery._id, preview: true }) +
+      `&random=${Math.random()}`
+    "
     :alt="gallery.name"
     :title="gallery.name"
   />
