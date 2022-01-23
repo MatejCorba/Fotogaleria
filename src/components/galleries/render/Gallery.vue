@@ -26,7 +26,10 @@
           :galleryIndex="galleryIndex"
           @disableOverlay="disableOverlay"
           @changeGalleryName="changeGalleryName"
-          @resetGalleryName="resetGalleryName"
+          @popUpEnabled="
+            resetGalleryName();
+            setCursorPosition();
+          "
         />
       </transition>
       <Preview :gallery="gallery" />
@@ -34,8 +37,10 @@
         {{ gallery.name.toUpperCase() }}
       </p>
       <input
+        ref="input"
         v-model="inputValue"
         @keyup.enter="changeGalleryName"
+        @input="inputToUpperCase"
         type="text"
         v-if="gallery.popUp"
         class="gallery-name input"
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, ref, toRefs, computed } from 'vue';
 import GalleryPopUp from './GalleryPopUp.vue';
 import Preview from './Preview.vue';
 import { useStore } from 'vuex';
@@ -64,9 +69,10 @@ export default {
     },
   },
   setup(props, { emit }) {
+    const input = ref(null);
     const store = useStore();
     const state = reactive({
-      inputValue: props.gallery.name.toUpperCase(),
+      inputValue: props.gallery.name,
     });
 
     const disableOverlay = () => {
@@ -94,7 +100,18 @@ export default {
     };
 
     const resetGalleryName = () => {
-      state.inputValue = props.gallery.name.toUpperCase();
+      state.inputValue = props.gallery.name;
+    };
+
+    const inputToUpperCase = () => {
+      state.inputValue = state.inputValue.toUpperCase();
+    };
+
+    const setCursorPosition = () => {
+      input.value.focus();
+      setTimeout(() => {
+        input.value.select();
+      }, 2);
     };
 
     return {
@@ -102,6 +119,9 @@ export default {
       disableOverlay,
       changeGalleryName,
       resetGalleryName,
+      inputToUpperCase,
+      setCursorPosition,
+      input,
     };
   },
 };

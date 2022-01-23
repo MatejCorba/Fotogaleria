@@ -49,7 +49,7 @@ export default {
 
     onMounted(() => {
       if (props.popUp) {
-        emit('resetGalleryName');
+        emit('popUpEnabled');
       }
     });
 
