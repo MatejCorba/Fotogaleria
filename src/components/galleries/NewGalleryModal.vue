@@ -10,6 +10,7 @@
       placeholder="Zadaj názov kategórie"
       v-model="inputText"
       @keyup.enter="newGalleryAdded"
+      @input="inputToUpperCase"
     />
     <button class="add-btn" @click="newGalleryAdded">
       <i class="fas fa-plus"></i> Pridať
@@ -38,10 +39,15 @@ export default {
       store.dispatch('galleries/changeModalVisibility');
     };
 
+    const inputToUpperCase = () => {
+      state.inputText = state.inputText.toUpperCase();
+    };
+
     return {
       ...toRefs(state),
       galleryModalClosed,
       newGalleryAdded,
+      inputToUpperCase,
     };
   },
 };
