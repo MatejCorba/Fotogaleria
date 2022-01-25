@@ -5,7 +5,10 @@
     <Images :galleryName="galleryName" />
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
-  <ExifModal v-if="showExifModal" :exifData="exif" />
+  <ExifModal
+    v-if="showExifModal && Object.keys(exif).length"
+    :exifData="exif"
+  />
 </template>
 
 <script>

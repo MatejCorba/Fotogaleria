@@ -48,16 +48,23 @@ export default {
     };
 
     const showExifModal = () => {
+      emit('disableOverlay');
+      // Zistime exif udaje obrazka
       store.dispatch('images/getExifData', {
         galleryName: props.name,
         imageId: id,
       });
 
-      emit('disableOverlay');
+      // Zobrazime exif modal
       store.dispatch('images/changeExifVisibility');
       setTimeout(() => {
         store.dispatch('images/closePopUp', props.imageIndex);
       }, 2);
+
+      // Po zobrazeni modalu vyresetujeme exif data
+      setTimeout(() => {
+        store.commit('images/getExifData', {});
+      }, 4);
     };
 
     return {

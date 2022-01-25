@@ -107,7 +107,12 @@ const images = {
           })
         );
 
-        commit('getExifData', response.data.exif);
+        if (response.data.exif == null) {
+          commit('getExifData', {});
+          alert('tento obrázok neobsahuje žiadne exif dáta.');
+        } else {
+          commit('getExifData', response.data.exif);
+        }
       } catch (error) {
         alert(error.response.data);
       }
