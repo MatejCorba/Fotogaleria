@@ -25,6 +25,9 @@ const images = {
     closePopUp(state, index) {
       state.images[index].popUp = false;
     },
+    deleteImage(state, index) {
+      state.images.splice(index, 1);
+    },
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
@@ -41,6 +44,22 @@ const images = {
     },
     closePopUp({ commit }, index) {
       commit('closePopUp', index);
+    },
+
+    async deleteImage({ commit }, { galleryName, imageIndex, imageId }) {
+      try {
+        await axios.delete(
+          config.API_IMAGES_URI({ gallery: galleryName, id: imageId })
+        );
+        commit('deleteImage', imageIndex);
+      } catch (error) {
+        commit('closePopUp', imageIndex);
+
+        // Pockame 180ms, kým sa zatvorí popUp a az tak zobrazime alert
+        setTimeout(() => {
+          alert(error.response.data);
+        }, 180);
+      }
     },
 
     async uploadImagesToAPI({ commit }, { fileArray, galleryName }) {

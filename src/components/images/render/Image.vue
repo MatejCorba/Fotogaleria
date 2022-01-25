@@ -8,20 +8,25 @@
     }"
   >
     <transition name="pop">
-      <ImagePopUp v-if="image.popUp" />
+      <ImagePopUp
+        v-if="image.popUp"
+        :name="galleryName"
+        :imageIndex="imageIndex"
+        @disableOverlay="disableOverlay"
+      />
     </transition>
 
     <a :class="{ 'cursor-default': image.popUp }" v-if="image.popUp">
-      <Preview :image="image" :name="name" />
+      <Preview :image="image" :name="galleryName" />
     </a>
 
     <a
-      :href="config.API_IMAGES_URI({ gallery: name, id: image._id })"
+      :href="config.API_IMAGES_URI({ gallery: galleryName, id: image._id })"
       data-lightbox="Gallery_1"
       :class="{ 'cursor-default': image.popUp }"
       v-if="!image.popUp"
     >
-      <Preview :image="image" :name="name" />
+      <Preview :image="image" :name="galleryName" />
     </a>
   </div>
 </template>
@@ -37,22 +42,30 @@ export default {
     image: {
       type: Object,
     },
-    name: {
+    galleryName: {
       type: String,
+    },
+    imageIndex: {
+      type: Number,
     },
   },
   components: {
     ImagePopUp,
     Preview,
   },
-  setup() {
+  setup(props, { emit }) {
     const state = reactive({
       count: 0,
     });
 
+    const disableOverlay = () => {
+      emit('disableOverlay');
+    };
+
     return {
       ...toRefs(state),
       config,
+      disableOverlay,
     };
   },
 };

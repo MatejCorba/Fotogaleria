@@ -2,7 +2,7 @@
   <Header :title="galleryName.toUpperCase()" />
   <ArrowBack />
   <div class="images-container">
-    <GalleryImages :name="galleryName" />
+    <Images :galleryName="galleryName" />
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
 </template>
@@ -11,7 +11,7 @@
 import { reactive, toRefs, computed, onMounted, onUnmounted } from 'vue';
 import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
-import GalleryImages from '../components/images/render/Images.vue';
+import Images from '../components/images/render/Images.vue';
 import { useStore } from 'vuex';
 import ArrowBack from '../components/images/ArrowBack.vue';
 import AddImagesModal from '../components/images/addImagesModal/AddImagesModal.vue';
@@ -19,7 +19,7 @@ import AddImagesModal from '../components/images/addImagesModal/AddImagesModal.v
 export default {
   components: {
     Header,
-    GalleryImages,
+    Images,
     ArrowBack,
     AddImagesModal,
   },

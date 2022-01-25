@@ -1,11 +1,13 @@
 <template>
   <Image
     @contextmenu.prevent="showPopUp"
+    @disableOverlay="disableOverlay"
     v-for="image in images"
     :key="image._id"
     :id="image._id"
     :image="image"
-    :name="name"
+    :galleryName="galleryName"
+    :imageIndex="imageIndex"
   />
 
   <NewImageIcon />
@@ -29,7 +31,7 @@ export default {
   },
 
   props: {
-    name: {
+    galleryName: {
       type: String,
     },
   },
@@ -57,11 +59,16 @@ export default {
       store.dispatch('images/closePopUp', state.imageIndex);
     };
 
+    const disableOverlay = () => {
+      state.showOverlay = false;
+    };
+
     return {
       ...toRefs(state),
       images,
       showPopUp,
       closePopUp,
+      disableOverlay,
     };
   },
 };
