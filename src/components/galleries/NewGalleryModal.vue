@@ -5,6 +5,7 @@
     <i class="fas fa-times close" @click="galleryModalClosed"></i>
     <h1 class="add">PRIDAJ KATEGÓRIU</h1>
     <input
+      ref="input"
       class="input-gallery-name"
       type="text"
       placeholder="Zadaj názov kategórie"
@@ -20,11 +21,12 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   setup() {
+    const input = ref(null);
     const store = useStore();
     const state = reactive({
       inputText: '',
@@ -39,15 +41,24 @@ export default {
       store.dispatch('galleries/changeModalVisibility');
     };
 
+    const setCursorPosition = () => {
+      input.value.focus();
+    };
+
     const inputToUpperCase = () => {
       state.inputText = state.inputText.toUpperCase();
     };
+
+    onMounted(() => {
+      setCursorPosition();
+    });
 
     return {
       ...toRefs(state),
       galleryModalClosed,
       newGalleryAdded,
       inputToUpperCase,
+      input,
     };
   },
 };
