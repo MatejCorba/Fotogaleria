@@ -8,7 +8,7 @@ const images = {
     images: [],
     showImageModal: false,
     showExifModal: false,
-    exif: {},
+    exifIndex: 0,
   }),
   mutations: {
     getImagesFromAPI(state, galleryImages) {
@@ -33,8 +33,9 @@ const images = {
     changeExifVisibility(state) {
       state.showExifModal = !state.showExifModal;
     },
-    getExifData(state, exif) {
-      state.exif = exif;
+
+    setExifIndex(state, index) {
+      state.exifIndex = index;
     },
   },
   actions: {
@@ -97,24 +98,8 @@ const images = {
         }
       });
     },
-    async getExifData({ commit }, { galleryName, imageId }) {
-      try {
-        const response = await axios.get(
-          config.API_IMAGES_URI({
-            gallery: galleryName,
-            id: imageId,
-            exif: true,
-          })
-        );
-        if (response.data.exif == null) {
-          commit('getExifData', {});
-          alert('tento obrázok neobsahuje žiadne exif dáta.');
-        } else {
-          commit('getExifData', response.data.exif);
-        }
-      } catch (error) {
-        alert(error.response.data);
-      }
+    setExifIndex({ commit }, index) {
+      commit('setExifIndex', index);
     },
   },
   getters: {},

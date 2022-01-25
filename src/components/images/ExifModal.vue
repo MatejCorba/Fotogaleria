@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import { onUnmounted, reactive, toRefs } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   props: {
-    exifData: {
-      type: Object,
+    exifIndex: {
+      type: Number,
     },
   },
-  setup() {
+  setup(props) {
     const store = useStore();
     const state = reactive({
       count: 0,
@@ -32,13 +32,13 @@ export default {
       store.dispatch('images/changeExifVisibility');
     };
 
-    onUnmounted(() => {
-      store.commit('images/getExifData', {});
-    });
+    const images = computed(() => store.state.images.images);
+    const exifData = images.value[props.exifIndex].exif;
 
     return {
       ...toRefs(state),
       closeExif,
+      exifData,
     };
   },
 };

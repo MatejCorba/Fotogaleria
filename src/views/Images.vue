@@ -5,10 +5,7 @@
     <Images :galleryName="galleryName" />
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
-  <ExifModal
-    v-if="showExifModal && Object.keys(exif).length"
-    :exifData="exif"
-  />
+  <ExifModal v-if="showExifModal" :exifIndex="exifIndex" />
 </template>
 
 <script>
@@ -40,7 +37,7 @@ export default {
     const galleryName = computed(() => router.params.galleryName).value;
     const showImageModal = computed(() => store.state.images.showImageModal);
     const showExifModal = computed(() => store.state.images.showExifModal);
-    const exif = computed(() => store.state.images.exif);
+    const exifIndex = computed(() => store.state.images.exifIndex);
 
     onMounted(() => {
       store.dispatch('images/getImagesFromAPI', galleryName);
@@ -55,7 +52,7 @@ export default {
       galleryName,
       showImageModal,
       showExifModal,
-      exif,
+      exifIndex,
     };
   },
 };

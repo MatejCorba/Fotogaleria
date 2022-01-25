@@ -49,17 +49,21 @@ export default {
 
     const showExifModal = () => {
       emit('disableOverlay');
-      // Zistime exif udaje obrazka
-      store.dispatch('images/getExifData', {
-        galleryName: props.name,
-        imageId: id,
-      });
-
-      // Zobrazime exif modal
-      store.dispatch('images/changeExifVisibility');
       setTimeout(() => {
         store.dispatch('images/closePopUp', props.imageIndex);
       }, 2);
+
+      // Pokial obrazok neobsahuje exif udaje tak posleme alert
+      if (images.value[props.imageIndex].exif == null)
+        return alert('Obrázok neobsahuje žiadne exif údaje.');
+
+      // Pokial obrazok obsahuje exif udaje, tak ho zobrazime v exif modal
+
+      // tato metoda zmeni viditelnost exif modalu
+      store.dispatch('images/changeExifVisibility');
+
+      // tato metoda zapise do VUEX state index galerie, ktorej exif chceme zobrazit
+      store.dispatch('images/setExifIndex', props.imageIndex);
     };
 
     return {
