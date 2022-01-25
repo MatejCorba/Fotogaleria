@@ -7,7 +7,7 @@
         >
       </li>
 
-      <li>
+      <li @click="showExifModal">
         <a class="option_menu option_menu_hover" href="#">
           <i class="fas fa-info"></i> ZOBRAZIŤ EXIF</a
         >
@@ -36,12 +36,9 @@ export default {
     });
 
     const images = computed(() => store.state.images.images);
+    const id = images.value[props.imageIndex]._id;
 
-    // Meno galerie
-    // id obrazka
-    // index obrazka
     const deleteImage = () => {
-      const id = images.value[props.imageIndex]._id;
       store.dispatch('images/deleteImage', {
         galleryName: props.name,
         imageIndex: props.imageIndex,
@@ -50,9 +47,23 @@ export default {
       emit('disableOverlay');
     };
 
+    const showExifModal = () => {
+      store.dispatch('images/getExifData', {
+        galleryName: props.name,
+        imageId: id,
+      });
+      
+      emit('disableOverlay');
+      store.dispatch('images/changeExifVisibility');
+      setTimeout(() => {
+        store.dispatch('images/closePopUp', props.imageIndex);
+      }, 2);
+    };
+
     return {
       ...toRefs(state),
       deleteImage,
+      showExifModal,
     };
   },
 };

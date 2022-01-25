@@ -1,0 +1,32 @@
+.exif-modal{
+height: 250px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+background: white;
+z-index: 18;
+width: 400px;
+overflow: auto;
+}
+.center-exif{
+    margin: 0;
+    position: absolute;
+    top: 75%;
+    left: 50%;   
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius:  5px;
+    background-color: white;
+}
+.exif-headline{
+    text-align: center;
+    font-family: "Nunito";
+    padding-top: 5px;
+    
+}
+.exif-info {
+    text-align: center;
+    font-family: "Nunito"; 
+    margin-top: 5px;
+    font-size: 18px;
+    
+
+}

@@ -7,6 +7,8 @@ const images = {
   state: () => ({
     images: [],
     showImageModal: false,
+    showExifModal: false,
+    exif: {},
   }),
   mutations: {
     getImagesFromAPI(state, galleryImages) {
@@ -28,6 +30,12 @@ const images = {
     deleteImage(state, index) {
       state.images.splice(index, 1);
     },
+    changeExifVisibility(state) {
+      state.showExifModal = !state.showExifModal;
+    },
+    getExifData(state, exif) {
+      state.exif = exif;
+    },
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
@@ -44,6 +52,10 @@ const images = {
     },
     closePopUp({ commit }, index) {
       commit('closePopUp', index);
+    },
+
+    changeExifVisibility({ commit }) {
+      commit('changeExifVisibility');
     },
 
     async deleteImage({ commit }, { galleryName, imageIndex, imageId }) {
@@ -84,6 +96,20 @@ const images = {
           alert(error.response.data);
         }
       });
+    },
+    async getExifData({ commit }, { galleryName, imageId }) {
+      try {
+        const response = await axios.get(
+          config.API_IMAGES_URI({
+            gallery: galleryName,
+            id: imageId,
+            exif: true,
+          }));
+
+        commit('getExifData', response.data.exif);
+      } catch (error) {
+        alert(error.response.data);
+      }
     },
   },
   getters: {},

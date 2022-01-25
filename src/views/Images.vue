@@ -5,6 +5,7 @@
     <Images :galleryName="galleryName" />
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
+  <ExifModal v-if="showExifModal" :exifData="exif"/>
 </template>
 
 <script>
@@ -15,6 +16,7 @@ import Images from '../components/images/render/Images.vue';
 import { useStore } from 'vuex';
 import ArrowBack from '../components/images/ArrowBack.vue';
 import AddImagesModal from '../components/images/addImagesModal/AddImagesModal.vue';
+import ExifModal from '../components/images/ExifModal.vue';
 
 export default {
   components: {
@@ -22,6 +24,7 @@ export default {
     Images,
     ArrowBack,
     AddImagesModal,
+    ExifModal,
   },
   setup() {
     const store = useStore();
@@ -33,6 +36,8 @@ export default {
     // Computed properties
     const galleryName = computed(() => router.params.galleryName).value;
     const showImageModal = computed(() => store.state.images.showImageModal);
+    const showExifModal = computed(() => store.state.images.showExifModal);
+    const exif = computed(() => store.state.images.exif);
 
     onMounted(() => {
       store.dispatch('images/getImagesFromAPI', galleryName);
@@ -46,6 +51,8 @@ export default {
       ...toRefs(state),
       galleryName,
       showImageModal,
+      showExifModal,
+      exif
     };
   },
 };

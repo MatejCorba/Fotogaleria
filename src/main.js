@@ -9,6 +9,7 @@ import './css/style.css';
 import '../node_modules/lightbox2/src/css/lightbox.css';
 import './css/galleryPopUp.css';
 import './css/imagePopUp.css';
+import "./css/exif.css"
 
 // Lightbox config
 lightbox.option({
