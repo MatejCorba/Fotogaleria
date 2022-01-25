@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { onUnmounted, reactive, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -31,6 +31,10 @@ export default {
     const closeExif = () => {
       store.dispatch('images/changeExifVisibility');
     };
+
+    onUnmounted(() => {
+      store.commit('images/getExifData', {});
+    });
 
     return {
       ...toRefs(state),

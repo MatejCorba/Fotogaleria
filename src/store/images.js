@@ -106,7 +106,6 @@ const images = {
             exif: true,
           })
         );
-
         if (response.data.exif == null) {
           commit('getExifData', {});
           alert('tento obrázok neobsahuje žiadne exif dáta.');
