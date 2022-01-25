@@ -52,7 +52,7 @@ export default {
         galleryName: props.name,
         imageId: id,
       });
-      
+
       emit('disableOverlay');
       store.dispatch('images/changeExifVisibility');
       setTimeout(() => {

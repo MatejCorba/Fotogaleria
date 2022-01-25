@@ -104,7 +104,8 @@ const images = {
             gallery: galleryName,
             id: imageId,
             exif: true,
-          }));
+          })
+        );
 
         commit('getExifData', response.data.exif);
       } catch (error) {

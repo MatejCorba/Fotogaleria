@@ -5,7 +5,7 @@
     <Images :galleryName="galleryName" />
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
-  <ExifModal v-if="showExifModal" :exifData="exif"/>
+  <ExifModal v-if="showExifModal" :exifData="exif" />
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
       galleryName,
       showImageModal,
       showExifModal,
-      exif
+      exif,
     };
   },
 };
