@@ -7,17 +7,17 @@
       scale: image.popUp,
     }"
   >
-  <!--Router link zabráni tomu, aby stránka po zmazaní fotografie alebo zobrazení exif neposunula scrollbar smerom hore-->
-  <router-link to="">
-    <transition name="pop">
-      <ImagePopUp
-        v-if="image.popUp"
-        :name="galleryName"
-        :imageIndex="imageIndex"
-        @disableOverlay="disableOverlay"
-      />
-    </transition>
-  </router-link>
+    <!--Router link zabráni tomu, aby stránka po zmazaní fotografie alebo zobrazení exif neposunula scrollbar smerom hore-->
+    <router-link to="">
+      <transition name="pop">
+        <ImagePopUp
+          v-if="image.popUp"
+          :name="galleryName"
+          :imageIndex="imageIndex"
+          @disableOverlay="disableOverlay"
+        />
+      </transition>
+    </router-link>
     <a :class="{ 'cursor-default': image.popUp }" v-if="image.popUp">
       <Preview :image="image" :name="galleryName" />
     </a>
