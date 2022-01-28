@@ -1,20 +1,19 @@
 .exif-modal {
-  height: 400px;
+  max-height: 400px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
   z-index: 18;
-  width: 500px;
-  overflow: auto;
+  padding-bottom: 20px;
+  border-radius: 5px;
 }
 .center-exif {
+  z-index: 200;
   margin: 0;
   position: fixed;
   top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: white;
 }
 .exif-headline {
   text-align: center;
@@ -27,4 +26,93 @@
   font-family: 'Nunito';
   margin-top: 5px;
   font-size: 18px;
+}
+
+.exif-overflow {
+  overflow: auto;
+}
+
+.exif-close {
+  float: right;
+  position: relative;
+
+  margin-right: 5px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .exif-modal {
+    width: 400px;
+  }
+  .exif-close {
+    bottom: 5px;
+    right: 1px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .exif-modal {
+    width: 450px;
+  }
+  .exif-close {
+    bottom: 5px;
+    right: 1px;
+  }
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .exif-modal {
+    width: 480px;
+  }
+  .exif-close {
+    bottom: 5px;
+    right: 1px;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .exif-modal {
+    width: 500px;
+  }
+  .exif-close {
+    bottom: 5px;
+    right: 1px;
+  }
+}
+
+/* Large devices (laptops/desktops, 1030px and up) */
+@media only screen and (min-width: 1030px) {
+  .exif-modal {
+    width: 500px;
+  }
+  .exif-close {
+    bottom: 8px;
+    right: 10px;
+  }
+}
+
+/* Large devices (laptops/desktops, 1067px and up) */
+@media only screen and (min-width: 1067px) {
+  .exif-modal {
+    width: 500px;
+  }
+  .exif-close {
+    bottom: 35px;
+    right: 23px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .exif-modal {
+    width: 500px;
+  }
+  .exif-close {
+    bottom: 31px;
+    right: 21px;
+  }
 }

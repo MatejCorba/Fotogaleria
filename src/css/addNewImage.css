@@ -1,0 +1,114 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .add-image-modal {
+    width: 400px;
+  }
+  .image-upload-button {
+    left: 32%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .add-image-modal {
+    width: 450px;
+  }
+  .image-upload-button {
+    left: 35%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .add-image-modal {
+    width: 600px;
+  }
+  .image-upload-button {
+    left: 39%;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .add-image-modal {
+    width: 700px;
+  }
+  .image-upload-button {
+    left: 39%;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .add-image-modal {
+    width: 700px;
+  }
+  .image-upload-button {
+    left: 39%;
+  }
+}
+.center-add-img {
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+.text-addImg {
+  position: relative;
+  font-family: 'Nunito';
+  font-size: 20px;
+  top: 15px;
+  left: 15px;
+  font-weight: bolder;
+}
+
+.drop-images {
+  border: dotted grey;
+  margin: 20px 10px;
+  height: 300px;
+}
+.fa-camera {
+  font-size: 40px;
+  padding-bottom: 5px;
+  color: lightgray;
+  position: relative;
+  left: 47%;
+  margin-top: 60px;
+}
+.text-center {
+  font-family: 'Nunito';
+  font-size: 15px;
+  color: grey;
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.image-upload-button {
+  position: relative;
+  background: darkblue;
+  border-radius: 2px;
+  color: white;
+  font-family: 'Nunito';
+  cursor: pointer;
+  padding: 5px;
+}
+.img-btn {
+  float: right;
+  background: darkblue;
+  border-radius: 5px;
+  width: 90px;
+  height: 35px;
+  font-size: 18px;
+  position: relative;
+  color: white;
+  font-family: 'Nunito';
+  margin-right: 15px;
+  bottom: 10px;
+}
+.add-image-modal {
+  height: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+  z-index: 13;
+}

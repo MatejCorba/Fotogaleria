@@ -1,14 +1,16 @@
 <template>
   <div class="overlay overlay-on" @click="closeExif"></div>
 
-  <section class="center-exif exif-modal">
-    <i class="fas fa-times close"></i>
-    <h1 class="exif-headline">EXIF</h1>
-    <p class="exif-info">
-      <span v-for="(exif, index) in Object.keys(exifData)" :key="index">
-        {{ exif }}: {{ exifData[exif] }} <br />
-      </span>
-    </p>
+  <section class="center-exif">
+    <i class="fas fa-times exif-close"></i>
+    <div class="exif-overflow exif-modal">
+      <h1 class="exif-headline">EXIF</h1>
+      <p class="exif-info">
+        <span v-for="(exif, index) in Object.keys(exifData)" :key="index">
+          {{ exif }}: {{ exifData[exif] }} <br />
+        </span>
+      </p>
+    </div>
   </section>
 </template>
 

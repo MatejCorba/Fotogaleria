@@ -1,0 +1,82 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .modal {
+    width: 440px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .modal {
+    width: 530px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .modal {
+    width: 600px;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .modal {
+    width: 700px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .modal {
+    width: 700px;
+  }
+}
+.center {
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+.modal {
+  height: 90px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+  z-index: 12;
+}
+.add {
+  position: relative;
+  font-family: 'Nunito';
+  font-size: 20px;
+  top: 15px;
+  left: 15px;
+  font-weight: bolder;
+}
+.input-gallery-name {
+  border: 0;
+  position: relative;
+  top: 22px;
+  left: 15px;
+  font-size: 18px;
+  font-family: 'Nunito';
+}
+.add-btn {
+  float: right;
+  background: darkblue;
+  border-radius: 5px;
+  width: 70px;
+  height: 30px;
+  font-size: 15px;
+  position: relative;
+  top: 18px;
+  left: 8px;
+  color: white;
+  font-family: 'Nunito';
+}
+.hr-galleries {
+  top: 25px;
+  position: relative;
+  left: 13px;
+  max-width: 677px;
+}
