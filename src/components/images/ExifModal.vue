@@ -2,7 +2,7 @@
   <div class="overlay overlay-on" @click="closeExif"></div>
 
   <section class="center-exif">
-    <i class="fas fa-times exif-close"></i>
+    <i class="fas fa-times exif-close" @click="closeExif"></i>
     <div class="exif-overflow exif-modal">
       <h1 class="exif-headline">EXIF</h1>
       <p class="exif-info">
