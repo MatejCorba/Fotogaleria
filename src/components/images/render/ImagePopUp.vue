@@ -12,6 +12,12 @@
           <i class="fas fa-info"></i> ZOBRAZIŤ EXIF</a
         >
       </li>
+
+      <li @click="setNewPreviewImage">
+        <a class="option_menu option_menu_hover" href="#">
+          <i class="fas fa-image"></i> NASTAVIŤ AKO NÁHĽAD</a
+        >
+      </li>
     </ul>
   </div>
 </template>
@@ -19,6 +25,8 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
+import axios from 'axios';
+import config from '../../../config/config';
 
 export default {
   props: {
@@ -66,10 +74,28 @@ export default {
       store.dispatch('images/setExifIndex', props.imageIndex);
     };
 
+    const setNewPreviewImage = async () => {
+      try {
+        await axios.put(
+          config.API_IMAGES_URI({
+            gallery: props.name,
+            id: id,
+          })
+        );
+      } catch (error) {
+        console.error(error);
+        alert('Náhľadový obrázok sa nepodarlilo nastaviť.');
+      }
+
+      store.dispatch('images/closePopUp', props.imageIndex);
+      emit('disableOverlay');
+    };
+
     return {
       ...toRefs(state),
       deleteImage,
       showExifModal,
+      setNewPreviewImage,
     };
   },
 };
