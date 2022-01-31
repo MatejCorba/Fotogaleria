@@ -3,7 +3,7 @@
     class="images"
     :class="{
       img_selected: image.popUp,
-      images_hover_effect: !image.popUp,
+      images_hover_effect: !image.popUp && !deleteMenuEnabled,
       scale: image.popUp,
     }"
   >
@@ -18,26 +18,27 @@
         />
       </transition>
     </router-link>
-    <a :class="{ 'cursor-default': image.popUp }" v-if="image.popUp">
-      <Preview :image="image" :name="galleryName" />
-    </a>
-
     <a
       :href="config.API_IMAGES_URI({ gallery: galleryName, id: image._id })"
       data-lightbox="Gallery_1"
       :class="{ 'cursor-default': image.popUp }"
-      v-if="!image.popUp"
+      v-if="!image.popUp && !deleteMenuEnabled"
     >
+      <Preview :image="image" :name="galleryName" />
+    </a>
+
+    <a :class="{ 'cursor-default': image.popUp }" v-else>
       <Preview :image="image" :name="galleryName" />
     </a>
   </div>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import config from '../../../config/config';
 import ImagePopUp from './ImagePopUp.vue';
 import Preview from './Preview.vue';
+import { useStore } from 'vuex';
 
 export default {
   props: {
@@ -56,10 +57,14 @@ export default {
     Preview,
   },
   setup(props, { emit }) {
+    const store = useStore();
     const state = reactive({
       count: 0,
     });
 
+    const deleteMenuEnabled = computed(
+      () => store.state.images.showMultiDeleteMenu
+    );
     const disableOverlay = () => {
       emit('disableOverlay');
     };
@@ -68,6 +73,7 @@ export default {
       ...toRefs(state),
       config,
       disableOverlay,
+      deleteMenuEnabled,
     };
   },
 };

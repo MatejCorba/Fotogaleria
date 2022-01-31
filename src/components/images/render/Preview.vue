@@ -11,10 +11,19 @@
     :alt="image.name"
     :title="image.name"
   />
+  <i
+    v-if="deleteMenuEnabled"
+    class="fa mr-1 checkbox"
+    :class="{
+      'fa-check-square text-blue-600': image.checkboxMarked,
+      'fa-square border-2 border-gray-700 text-white': !image.checkboxMarked,
+    }"
+  ></i>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
+import { useStore } from 'vuex';
 import config from '../../../config/config';
 
 export default {
@@ -27,16 +36,29 @@ export default {
     },
   },
   setup() {
+    const store = useStore();
     const state = reactive({
       count: 0,
     });
 
+    const deleteMenuEnabled = computed(
+      () => store.state.images.showMultiDeleteMenu
+    );
+
     return {
       ...toRefs(state),
       config,
+      deleteMenuEnabled,
     };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: rgb(33, 189, 33);
+}
+</style>

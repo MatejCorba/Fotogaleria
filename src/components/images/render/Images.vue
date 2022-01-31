@@ -1,6 +1,7 @@
 <template>
   <Image
     @contextmenu.prevent="showPopUp"
+    @click="markDeleteCheckbox"
     @disableOverlay="disableOverlay"
     v-for="image in images"
     :key="image._id"
@@ -45,6 +46,10 @@ export default {
       showOverlay: false,
     });
 
+    // Computed props
+    const deleteMenuEnabled = computed(
+      () => store.state.images.showMultiDeleteMenu
+    );
     const images = computed(() => store.state.images.images);
 
     const showPopUp = (event) => {
@@ -55,6 +60,16 @@ export default {
       );
 
       store.dispatch('images/showPopUp', state.imageIndex);
+    };
+
+    const markDeleteCheckbox = (event) => {
+      if (!deleteMenuEnabled.value) return;
+      const clicked_id = event.currentTarget.id;
+      const imageIndex = images.value.findIndex(
+        (gallery) => gallery._id === clicked_id
+      );
+
+      store.dispatch('images/markDeleteCheckbox', imageIndex);
     };
 
     const closePopUp = () => {
@@ -72,6 +87,7 @@ export default {
       showPopUp,
       closePopUp,
       disableOverlay,
+      markDeleteCheckbox,
     };
   },
 };

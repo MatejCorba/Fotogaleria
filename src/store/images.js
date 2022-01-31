@@ -9,6 +9,7 @@ const images = {
     showImageModal: false,
     showExifModal: false,
     exifIndex: 0,
+    showMultiDeleteMenu: false,
   }),
   mutations: {
     getImagesFromAPI(state, galleryImages) {
@@ -36,6 +37,13 @@ const images = {
 
     setExifIndex(state, index) {
       state.exifIndex = index;
+    },
+    changeDeleteMenuVisibility(state) {
+      state.showMultiDeleteMenu = !state.showMultiDeleteMenu;
+    },
+    markDeleteCheckbox(state, imageIndex) {
+      state.images[imageIndex].checkboxMarked =
+        !state.images[imageIndex].checkboxMarked;
     },
   },
   actions: {
@@ -100,6 +108,12 @@ const images = {
     },
     setExifIndex({ commit }, index) {
       commit('setExifIndex', index);
+    },
+    changeDeleteMenuVisibility({ commit }) {
+      commit('changeDeleteMenuVisibility');
+    },
+    markDeleteCheckbox({ commit }, imageIndex) {
+      commit('markDeleteCheckbox', imageIndex);
     },
   },
   getters: {},
