@@ -11,6 +11,7 @@
   />
 
   <NewImageIcon />
+  <DeleteMenuButtons />
   <div
     v-if="showOverlay"
     class="overlay_menu overlay-on"
@@ -23,11 +24,13 @@ import { reactive, toRefs, computed } from 'vue';
 import NewImageIcon from '../NewImageIcon.vue';
 import { useStore } from 'vuex';
 import Image from './Image.vue';
+import DeleteMenuButtons from '../DeleteMenuButtons.vue';
 
 export default {
   components: {
     NewImageIcon,
     Image,
+    DeleteMenuButtons,
   },
 
   props: {
