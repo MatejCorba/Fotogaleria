@@ -11,12 +11,16 @@
     <button
       class="btn-black"
       @click="showDeleteMenu"
-      v-if="!deleteButtonClicked"
+      v-if="!deleteButtonClicked && !popUpEnabled && !exifModalEnabled"
     >
       <i class="fas fa-trash"></i> VYBRAŤ OBRÁZKY
     </button>
 
-    <button v-else class="btn-black" @click="deteteMarkedImages">
+    <button
+      v-if="deleteButtonClicked"
+      class="btn-black"
+      @click="deteteMarkedImages"
+    >
       <i class="fas fa-trash"></i> ZMAZAŤ
     </button>
   </div>
@@ -31,6 +35,9 @@ export default {
     galleryName: {
       type: String,
     },
+    imageIndex: {
+      type: Number,
+    },
   },
   setup(props) {
     const store = useStore();
@@ -41,8 +48,14 @@ export default {
 
     // Computed props
     const images = computed(() => store.state.images.images);
+    const popUpEnabled = computed(
+      // "?." => Optional chaining operator
+      () => store.state.images.images[props.imageIndex]?.popUp
+    );
+    const exifModalEnabled = computed(() => store.state.images.showExifModal);
 
     const showDeleteMenu = () => {
+      if (popUpEnabled.value) return;
       state.deleteButtonClicked = true;
       store.dispatch('images/enableDeleteMenu');
     };
@@ -78,6 +91,8 @@ export default {
       showDeleteMenu,
       closeDeleteMenu,
       deteteMarkedImages,
+      popUpEnabled,
+      exifModalEnabled,
     };
   },
 };

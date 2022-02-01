@@ -12,7 +12,7 @@
   />
 
   <NewImageIcon />
-  <DeleteMenuButtons :galleryName="galleryName" />
+  <DeleteMenuButtons :galleryName="galleryName" :imageIndex="imageIndex" />
   <div
     v-if="showOverlay"
     class="overlay_menu overlay-on"
@@ -66,11 +66,11 @@ export default {
     const markDeleteCheckbox = (event) => {
       if (!deleteMenuEnabled.value) return;
       const clicked_id = event.currentTarget.id;
-      const imageIndex = images.value.findIndex(
+      const markedImageIndex = images.value.findIndex(
         (gallery) => gallery._id === clicked_id
       );
 
-      store.dispatch('images/markDeleteCheckbox', imageIndex);
+      store.dispatch('images/markDeleteCheckbox', markedImageIndex);
     };
 
     const closePopUp = () => {
