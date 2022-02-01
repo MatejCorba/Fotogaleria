@@ -53,6 +53,7 @@ export default {
     const images = computed(() => store.state.images.images);
 
     const showPopUp = (event) => {
+      if (deleteMenuEnabled.value) return;
       state.showOverlay = true;
       let clicked_id = event.currentTarget.id;
       state.imageIndex = images.value.findIndex(
