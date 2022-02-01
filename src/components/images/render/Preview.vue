@@ -11,14 +11,18 @@
     :alt="image.name"
     :title="image.name"
   />
-  <i
-    v-if="deleteMenuEnabled"
-    class="fa mr-1 checkbox"
-    :class="{
-      'fa-check-square text-blue-600': image.checkboxMarked,
-      'fa-square border-2 border-gray-700 text-white': !image.checkboxMarked,
-    }"
-  ></i>
+  <div v-if="deleteMenuEnabled">
+    <img
+      src="images/Checkbox-filled.png"
+      class="checkbox"
+      v-if="image.checkboxMarked"
+    />
+    <img
+      src="images/Checkbox.png"
+      class="checkbox"
+      v-if="!image.checkboxMarked"
+    />
+  </div>
 </template>
 
 <script>
@@ -59,6 +63,7 @@ export default {
   position: absolute;
   top: 10px;
   left: 10px;
-  color: rgb(33, 189, 33);
+  width: 25px;
+  height: 25px;
 }
 </style>
