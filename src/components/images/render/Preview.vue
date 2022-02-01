@@ -20,7 +20,7 @@
     <img
       src="images/Checkbox.png"
       class="checkbox"
-      v-if="!image.checkboxMarked"
+      v-else
     />
   </div>
 </template>
