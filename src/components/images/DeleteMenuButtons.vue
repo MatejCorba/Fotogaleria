@@ -13,7 +13,7 @@
       @click="showDeleteMenu"
       v-if="!deleteButtonClicked"
     >
-      <i class="fas fa-trash"></i> VYBRAŤ OBRǍZKY
+      <i class="fas fa-trash"></i> VYBRAŤ OBRÁZKY
     </button>
 
     <button v-else class="btn-black" @click="deteteMarkedImages">
@@ -44,12 +44,12 @@ export default {
 
     const showDeleteMenu = () => {
       state.deleteButtonClicked = true;
-      store.dispatch('images/changeDeleteMenuVisibility');
+      store.dispatch('images/enableDeleteMenu');
     };
 
     const closeDeleteMenu = () => {
       state.deleteButtonClicked = false;
-      store.dispatch('images/changeDeleteMenuVisibility');
+      store.dispatch('images/disableDeleteMenu');
       for (let image of images.value) {
         if (image.checkboxMarked)
           store.dispatch(
@@ -68,7 +68,7 @@ export default {
         images: imagesToDelete,
       });
       state.deleteButtonClicked = false;
-      store.dispatch('images/changeDeleteMenuVisibility');
+      store.dispatch('images/disableDeleteMenu');
     };
 
     onUnmounted(() => closeDeleteMenu());

@@ -38,8 +38,11 @@ const images = {
     setExifIndex(state, index) {
       state.exifIndex = index;
     },
-    changeDeleteMenuVisibility(state) {
-      state.showMultiDeleteMenu = !state.showMultiDeleteMenu;
+    enableDeleteMenu(state) {
+      state.showMultiDeleteMenu = true;
+    },
+    disableDeleteMenu(state) {
+      state.showMultiDeleteMenu = false;
     },
     markDeleteCheckbox(state, imageIndex) {
       state.images[imageIndex].checkboxMarked =
@@ -112,8 +115,11 @@ const images = {
     setExifIndex({ commit }, index) {
       commit('setExifIndex', index);
     },
-    changeDeleteMenuVisibility({ commit }) {
-      commit('changeDeleteMenuVisibility');
+    enableDeleteMenu({ commit }) {
+      commit('enableDeleteMenu');
+    },
+    disableDeleteMenu({ commit }) {
+      commit('disableDeleteMenu');
     },
     markDeleteCheckbox({ commit }, imageIndex) {
       commit('markDeleteCheckbox', imageIndex);

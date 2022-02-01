@@ -17,11 +17,7 @@
       class="checkbox"
       v-if="image.checkboxMarked"
     />
-    <img
-      src="images/Checkbox.png"
-      class="checkbox"
-      v-else
-    />
+    <img src="images/Checkbox.png" class="checkbox" v-else />
   </div>
 </template>
 
