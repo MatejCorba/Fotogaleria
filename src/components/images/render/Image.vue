@@ -27,7 +27,13 @@
       <Preview :image="image" :name="galleryName" />
     </a>
 
-    <a :class="{ 'cursor-default': image.popUp }" v-else>
+    <a
+      :class="{
+        'cursor-default': image.popUp,
+        'cursor-pointer': deleteMenuEnabled,
+      }"
+      v-else
+    >
       <Preview :image="image" :name="galleryName" />
     </a>
   </div>
@@ -96,5 +102,9 @@ export default {
 
 .cursor-default {
   cursor: default;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>

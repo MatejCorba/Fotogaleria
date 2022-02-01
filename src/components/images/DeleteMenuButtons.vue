@@ -7,8 +7,17 @@
     >
       <i class="fas fa-times btn-close"></i> ZRUŠ VÝBER
     </button>
-    <button class="btn-black" @click="showDeleteMenu">
-      <i class="fas fa-trash"></i> {{ deleteButtonText }}
+
+    <button
+      class="btn-black"
+      @click="showDeleteMenu"
+      v-if="!deleteButtonClicked"
+    >
+      <i class="fas fa-trash"></i> ZMAZAŤ OBRǍZKY
+    </button>
+
+    <button v-else class="btn-black" @click="deteteMarkedImages">
+      <i class="fas fa-trash"></i> ZMAZAŤ
     </button>
   </div>
 </template>
@@ -18,12 +27,16 @@ import { reactive, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
-  setup() {
+  props: {
+    galleryName: {
+      type: String,
+    },
+  },
+  setup(props) {
     const store = useStore();
     const state = reactive({
       count: 0,
       deleteButtonClicked: false,
-      deleteButtonText: 'ZMAZAŤ OBRÁZKY',
     });
 
     // Computed props
@@ -31,13 +44,11 @@ export default {
 
     const showDeleteMenu = () => {
       state.deleteButtonClicked = true;
-      state.deleteButtonText = 'ZMAZAŤ';
       store.dispatch('images/changeDeleteMenuVisibility');
     };
 
     const closeDeleteMenu = () => {
       state.deleteButtonClicked = false;
-      state.deleteButtonText = 'ZMAZAŤ OBRÁZKY';
       store.dispatch('images/changeDeleteMenuVisibility');
       for (let image of images.value) {
         if (image.checkboxMarked) {
@@ -49,13 +60,27 @@ export default {
       }
     };
 
+    const deteteMarkedImages = () => {
+      for (let image of images.value) {
+        if (image.checkboxMarked) {
+          store.dispatch('images/deleteImage', {
+            galleryName: props.galleryName,
+            imageIndex: images.value.indexOf(image),
+            imageId: image._id,
+          });
+        }
+      }
+
+      state.deleteButtonClicked = false;
+      store.dispatch('images/changeDeleteMenuVisibility');
+    };
+
     return {
       ...toRefs(state),
       showDeleteMenu,
       closeDeleteMenu,
+      deteteMarkedImages,
     };
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

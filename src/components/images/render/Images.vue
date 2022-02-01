@@ -12,7 +12,7 @@
   />
 
   <NewImageIcon />
-  <DeleteMenuButtons />
+  <DeleteMenuButtons :galleryName="galleryName" />
   <div
     v-if="showOverlay"
     class="overlay_menu overlay-on"
