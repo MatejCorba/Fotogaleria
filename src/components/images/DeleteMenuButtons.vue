@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -51,12 +51,11 @@ export default {
       state.deleteButtonClicked = false;
       store.dispatch('images/changeDeleteMenuVisibility');
       for (let image of images.value) {
-        if (image.checkboxMarked) {
+        if (image.checkboxMarked)
           store.dispatch(
             'images/markDeleteCheckbox',
             images.value.indexOf(image)
           );
-        }
       }
     };
 
@@ -71,6 +70,8 @@ export default {
       state.deleteButtonClicked = false;
       store.dispatch('images/changeDeleteMenuVisibility');
     };
+
+    onUnmounted(() => closeDeleteMenu());
 
     return {
       ...toRefs(state),
