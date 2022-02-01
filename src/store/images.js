@@ -45,6 +45,9 @@ const images = {
       state.images[imageIndex].checkboxMarked =
         !state.images[imageIndex].checkboxMarked;
     },
+    deleteMultipleImages(state, images) {
+      state.images = state.images.filter((image) => !images.includes(image));
+    },
   },
   actions: {
     async getImagesFromAPI({ commit }, galleryName) {
@@ -114,6 +117,19 @@ const images = {
     },
     markDeleteCheckbox({ commit }, imageIndex) {
       commit('markDeleteCheckbox', imageIndex);
+    },
+    async deleteMultipleImages({ commit }, { galleryName, images }) {
+      for (let image of images) {
+        try {
+          await axios.delete(
+            config.API_IMAGES_URI({ gallery: galleryName, id: image._id })
+          );
+        } catch (error) {
+          alert(error.response.data);
+        }
+      }
+
+      commit('deleteMultipleImages', images);
     },
   },
   getters: {},

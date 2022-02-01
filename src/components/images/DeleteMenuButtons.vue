@@ -61,16 +61,13 @@ export default {
     };
 
     const deteteMarkedImages = () => {
-      for (let image of images.value) {
-        if (image.checkboxMarked) {
-          store.dispatch('images/deleteImage', {
-            galleryName: props.galleryName,
-            imageIndex: images.value.indexOf(image),
-            imageId: image._id,
-          });
-        }
-      }
-
+      const imagesToDelete = images.value.filter(
+        (image) => image.checkboxMarked
+      );
+      store.dispatch('images/deleteMultipleImages', {
+        galleryName: props.galleryName,
+        images: imagesToDelete,
+      });
       state.deleteButtonClicked = false;
       store.dispatch('images/changeDeleteMenuVisibility');
     };
