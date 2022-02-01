@@ -13,7 +13,7 @@
       @click="showDeleteMenu"
       v-if="!deleteButtonClicked"
     >
-      <i class="fas fa-trash"></i> ZMAZAŤ OBRǍZKY
+      <i class="fas fa-trash"></i> VYBRAŤ OBRǍZKY
     </button>
 
     <button v-else class="btn-black" @click="deteteMarkedImages">
