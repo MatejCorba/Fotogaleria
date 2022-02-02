@@ -32,6 +32,12 @@ const galleries = {
     changeGalleryName(state, { newName, index }) {
       state.galleries[index].name = newName;
     },
+    galleryHovered(state, index) {
+      state.galleries[index].hovered = true;
+    },
+    galleryUnhovered(state, index) {
+      state.galleries[index].hovered = false;
+    },
   },
 
   actions: {
@@ -47,6 +53,12 @@ const galleries = {
     },
     closePopUp({ commit }, index) {
       commit('closePopUp', index);
+    },
+    galleryHovered({ commit }, index) {
+      commit('galleryHovered', index);
+    },
+    galleryUnhovered({ commit }, index){
+      commit('galleryUnhovered', index);
     },
 
     async deleteGallery({ commit }, { id, index }) {

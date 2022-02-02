@@ -138,7 +138,11 @@ const images = {
       commit('deleteMultipleImages', images);
     },
   },
-  getters: {},
+  getters: {
+    imageNumber(state) {
+      return state.images.length;
+    }
+  },
 };
 
 export default images;

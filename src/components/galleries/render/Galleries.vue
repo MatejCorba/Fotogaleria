@@ -1,5 +1,7 @@
 <template>
   <Gallery
+    @mouseleave="galleryUnhovered"
+    @mouseover="galleryHovered"
     @contextmenu.prevent="showPopUp"
     @disableOverlay="disableOverlay"
     v-for="gallery in galleries"
@@ -47,14 +49,25 @@ export default {
 
       store.dispatch('galleries/showPopUp', state.galleryIndex);
     };
-    const disableOverlay = () => {
-      state.showOverlay = false;
-    };
+    const disableOverlay = () => (state.showOverlay = false);
 
     const closePopUp = () => {
       state.showOverlay = false;
 
       store.dispatch('galleries/closePopUp', state.galleryIndex);
+    };
+    const galleryHovered = (event) => {
+      const id = event.currentTarget.id;
+      const hoveredIndex = galleries.value.findIndex(gallery => gallery._id == id);
+      store.dispatch("galleries/galleryHovered", hoveredIndex);
+
+    };
+
+    const galleryUnhovered = (event) => {
+      const id = event.currentTarget.id;
+      const hoveredIndex = galleries.value.findIndex(gallery => gallery._id == id);
+      
+      store.dispatch("galleries/galleryUnhovered", hoveredIndex);
     };
 
     return {
@@ -63,6 +76,8 @@ export default {
       disableOverlay,
       showPopUp,
       closePopUp,
+      galleryHovered,
+      galleryUnhovered,
     };
   },
 };

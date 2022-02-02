@@ -5,6 +5,7 @@
       gallery_selected: gallery.popUp,
       'gallery-hover-efect': !gallery.popUp,
       scale: gallery.popUp,
+      'gallery-hovered': gallery.hovered,
     }"
   >
     <!--Vysvetlenie ":to" propu-->
@@ -33,9 +34,13 @@
         />
       </transition>
       <Preview :gallery="gallery" />
-      <p v-if="!gallery.popUp" class="gallery-name">
-        {{ gallery.name.toUpperCase() }}
-      </p>
+      <div v-if="!gallery.popUp">
+        <p class="gallery-name">
+          {{ gallery.name.toUpperCase() }}
+        </p>
+        <span v-if="gallery.hovered">Počet obrázkov: {{ imageNumber }}</span>
+      </div>
+
       <input
         ref="input"
         v-model="inputValue"
@@ -50,7 +55,7 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs, computed } from 'vue';
+import { reactive, ref, toRefs, computed, watch } from 'vue';
 import GalleryPopUp from './GalleryPopUp.vue';
 import Preview from './Preview.vue';
 import { useStore } from 'vuex';
@@ -73,6 +78,7 @@ export default {
     const store = useStore();
     const state = reactive({
       inputValue: props.gallery.name,
+      imageNumber: 0,
     });
 
     const disableOverlay = () => {
@@ -108,6 +114,21 @@ export default {
       state.inputValue = state.inputValue.toUpperCase();
     };
 
+    watch(
+      () => props.gallery?.hovered,
+      () => {
+        if (props.gallery?.hovered) {
+          store.dispatch("images/getImagesFromAPI", props.gallery.name);
+          setTimeout(() => {
+            state.imageNumber = store.getters["images/imageNumber"];
+          }, 50);
+          
+        } else {
+          store.state.images.images = [];
+        }
+      } 
+    );
+
     const setCursorPosition = () => {
       input.value.focus();
       setTimeout(() => {
@@ -129,6 +150,20 @@ export default {
 </script>
 
 <style scoped>
+span {
+  padding: 0;
+  margin: 0;
+  bottom: 5px;
+  position: relative;
+  color: gray;
+  font-size: 17px;
+}
+p {
+  padding: 0;
+  margin: 0;
+  bottom: 0px;
+  position: relative;
+}
 .scale {
   transform: scale(1.05);
 }
@@ -159,5 +194,8 @@ export default {
   margin: 0;
   width: 240px;
   background: none;
+}
+.gallery-hovered {
+  height: 310px;
 }
 </style>
