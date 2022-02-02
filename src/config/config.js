@@ -34,7 +34,7 @@ const config = {
   /**
    * Generácia URI na získavanie údajov ohľadom obrázkov z API
    * @param {Object} URI - Do funkcie treba poslať objekt obsahúci údaje ohľadom URI
-   * @param {String} URI.name - Meno galérie, z ktorej chceme zobraziť obrázky
+   * @param {String} URI.gallery - Meno galérie, z ktorej chceme zobraziť obrázky
    * @param {string=} URI.id - Id obrázka, ktorý chceme zobraziť
    * @param {Boolean=} URI.preview - Po nastavení tejto hodnoty na true sa zmenia rezmery obrázka na rozmery v "config.json"
    * @param {Boolean=} URI.exif - Po nastavení tejto hodnoty na true sa nam namiesto obrázka zobrazi jeho exif
