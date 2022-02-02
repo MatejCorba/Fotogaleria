@@ -38,7 +38,7 @@
         <p class="gallery-name">
           {{ gallery.name.toUpperCase() }}
         </p>
-        <span v-if="gallery.hovered">Počet obrázkov: {{ imageNumber }}</span>
+        <span v-if="isGalleryHovered">Počet obrázkov: {{ imageNumber }}</span>
       </div>
 
       <input
@@ -59,6 +59,8 @@ import { reactive, ref, toRefs, computed, watch } from 'vue';
 import GalleryPopUp from './GalleryPopUp.vue';
 import Preview from './Preview.vue';
 import { useStore } from 'vuex';
+import axios from 'axios';
+import config from '../../../config/config';
 
 export default {
   components: {
@@ -79,6 +81,7 @@ export default {
     const state = reactive({
       inputValue: props.gallery.name,
       imageNumber: 0,
+      isGalleryHovered: false,
     });
 
     const disableOverlay = () => {
@@ -87,6 +90,7 @@ export default {
 
     // Computed properties
     const galleries = computed(() => store.state.galleries.galleries);
+    name;
 
     const changeGalleryName = () => {
       const id = galleries.value[props.galleryIndex]._id;
@@ -113,20 +117,24 @@ export default {
     const inputToUpperCase = () => {
       state.inputValue = state.inputValue.toUpperCase();
     };
+    const galleryHovered = () => {
+      setTimeout(() => {
+        // Pockame 120ms, kym sa skonci animacia zvacsovania sa a az tak vypiseme pocet obrazkov
+        state.isGalleryHovered = props.gallery.hovered;
+      }, 120);
+    };
 
     watch(
       () => props.gallery?.hovered,
-      () => {
+      async () => {
         if (props.gallery?.hovered) {
-          store.dispatch("images/getImagesFromAPI", props.gallery.name);
-          setTimeout(() => {
-            state.imageNumber = store.getters["images/imageNumber"];
-          }, 50);
-          
-        } else {
-          store.state.images.images = [];
+          const response = await axios.get(
+            config.API_IMAGES_URI({ gallery: props.gallery.name })
+          );
+          state.imageNumber = response.data.length;
         }
-      } 
+        galleryHovered();
+      }
     );
 
     const setCursorPosition = () => {

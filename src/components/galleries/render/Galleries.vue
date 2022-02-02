@@ -58,16 +58,19 @@ export default {
     };
     const galleryHovered = (event) => {
       const id = event.currentTarget.id;
-      const hoveredIndex = galleries.value.findIndex(gallery => gallery._id == id);
-      store.dispatch("galleries/galleryHovered", hoveredIndex);
-
+      const hoveredIndex = galleries.value.findIndex(
+        (gallery) => gallery._id == id
+      );
+      store.dispatch('galleries/galleryHovered', hoveredIndex);
     };
 
     const galleryUnhovered = (event) => {
       const id = event.currentTarget.id;
-      const hoveredIndex = galleries.value.findIndex(gallery => gallery._id == id);
-      
-      store.dispatch("galleries/galleryUnhovered", hoveredIndex);
+      const hoveredIndex = galleries.value.findIndex(
+        (gallery) => gallery._id == id
+      );
+
+      store.dispatch('galleries/galleryUnhovered', hoveredIndex);
     };
 
     return {

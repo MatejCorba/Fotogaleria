@@ -57,7 +57,7 @@ const galleries = {
     galleryHovered({ commit }, index) {
       commit('galleryHovered', index);
     },
-    galleryUnhovered({ commit }, index){
+    galleryUnhovered({ commit }, index) {
       commit('galleryUnhovered', index);
     },
 
