@@ -90,7 +90,6 @@ export default {
 
     // Computed properties
     const galleries = computed(() => store.state.galleries.galleries);
-    name;
 
     const changeGalleryName = () => {
       const id = galleries.value[props.galleryIndex]._id;

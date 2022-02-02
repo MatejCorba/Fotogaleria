@@ -102,6 +102,7 @@ const galleries = {
         // Pockame 180ms, kým sa zatvorí popUp a az tak zobrazime alert
         setTimeout(() => {
           alert(error.response.data);
+          commit('galleryUnhovered', index);
         }, 180);
       }
     },
