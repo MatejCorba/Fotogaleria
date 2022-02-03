@@ -3,7 +3,7 @@
     class="images"
     :class="{
       img_selected: image.popUp,
-      images_hover_effect: !image.popUp && !deleteMenuEnabled,
+      'hover-effect': !image.popUp && !deleteMenuEnabled,
       scale: image.popUp,
     }"
   >

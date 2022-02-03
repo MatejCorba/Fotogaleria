@@ -3,7 +3,7 @@
     class="gallery"
     :class="{
       gallery_selected: gallery.popUp,
-      'gallery-hover-efect': !gallery.popUp,
+      'hover-effect': !gallery.popUp,
       scale: gallery.popUp,
       'gallery-hovered': gallery.hovered && !gallery.popUp,
     }"
