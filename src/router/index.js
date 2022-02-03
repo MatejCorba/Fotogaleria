@@ -1,7 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router';
+const {
+  createRouter,
+  createMemoryHistory,
+  createWebHistory,
+} = require('vue-router');
 
 import Home from '../views/Home';
 import Images from '../views/Images';
+
+
+const isServer = typeof window === 'undefined';
+
+let history = isServer ? createMemoryHistory() : createWebHistory();
 
 const routes = [
   {
@@ -15,12 +24,10 @@ const routes = [
     path: '/:pathMatch(.)*/:galleryName',
     name: 'Images',
     component: Images,
+    props: true
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-export default router;
+export default function () {
+  return createRouter({ routes, history });
+}

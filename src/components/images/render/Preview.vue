@@ -13,11 +13,11 @@
   />
   <div v-if="deleteMenuEnabled">
     <img
-      src="images/Checkbox-filled.png"
+      src="img/Checkbox-filled.png"
       class="checkbox"
       v-if="image.checkboxMarked"
     />
-    <img src="images/Checkbox.png" class="checkbox" v-else />
+    <img src="img/Checkbox.png" class="checkbox" v-else />
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 <template>
-  <div>
     <ul class="img_menu menu_on">
       <li @click="deleteImage">
         <a class="option_menu option_menu_hover" href="#"
@@ -19,11 +18,10 @@
         >
       </li>
     </ul>
-  </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import axios from 'axios';
 import config from '../../../config/config';
@@ -88,6 +86,8 @@ export default {
       emit('disableOverlay');
     };
 
+    onMounted(() => console.log("hi"));
+
     return {
       deleteImage,
       showExifModal,
@@ -96,5 +96,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

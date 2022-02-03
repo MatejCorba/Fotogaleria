@@ -3,18 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:client": "vue-cli-service build --dest dist/client",
+    "build:server": "SSR=1 vue-cli-service build --dest dist/server",
+    "build": "rm -rf ./dist && npm run build:client && npm run build:server",
+    "lint": "vue-cli-service lint",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "pressr": "npm run build",
+    "ssr": "node server.js",
+    "ssr:dev": "node server.js"
   },
   "dependencies": {
+    "@vue/server-renderer": "^3.2.29",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "express": "^4.17.2",
     "jquery": "^3.6.0",
     "lightbox2": "^2.11.3",
+    "serialize-javascript": "^6.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -25,9 +34,12 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "webpack-manifest-plugin": "^2.2.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }
