@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import axios from 'axios';
 import config from '../../../config/config';
@@ -85,8 +85,6 @@ export default {
       store.dispatch('images/closePopUp', props.imageIndex);
       emit('disableOverlay');
     };
-
-    onMounted(() => console.log('hi'));
 
     return {
       deleteImage,
