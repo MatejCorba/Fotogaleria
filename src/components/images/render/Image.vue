@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { computed } from 'vue';
 import config from '../../../config/config';
 import ImagePopUp from './ImagePopUp.vue';
 import Preview from './Preview.vue';
@@ -64,9 +64,6 @@ export default {
   },
   setup(props, { emit }) {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     const deleteMenuEnabled = computed(
       () => store.state.images.showMultiDeleteMenu
@@ -76,7 +73,6 @@ export default {
     };
 
     return {
-      ...toRefs(state),
       config,
       disableOverlay,
       deleteMenuEnabled,

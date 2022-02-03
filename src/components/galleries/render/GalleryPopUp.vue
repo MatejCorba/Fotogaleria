@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -31,9 +31,6 @@ export default {
   },
   setup(props, { emit }) {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     // Computed properties
     const galleries = computed(() => store.state.galleries.galleries);
@@ -57,7 +54,6 @@ export default {
     });
 
     return {
-      ...toRefs(state),
       deleteGallery,
       changeGalleryName,
     };

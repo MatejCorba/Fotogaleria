@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import Galleries from '../components/galleries/render/Galleries.vue';
 import Header from '../components/Header.vue';
@@ -24,9 +24,6 @@ export default {
   },
   setup() {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     onMounted(() => {
       store.dispatch('galleries/getGalleriesFromAPI');
@@ -38,7 +35,6 @@ export default {
     );
 
     return {
-      ...toRefs(state),
       showGalleryModal,
     };
   },

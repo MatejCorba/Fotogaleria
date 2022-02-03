@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -26,9 +26,6 @@ export default {
   },
   setup(props) {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     const closeExif = () => {
       store.dispatch('images/changeExifVisibility');
@@ -38,7 +35,6 @@ export default {
     const exifData = images.value[props.exifIndex].exif;
 
     return {
-      ...toRefs(state),
       closeExif,
       exifData,
     };

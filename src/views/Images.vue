@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import Header from '../components/Header.vue';
 import { useRoute } from 'vue-router';
 import Images from '../components/images/render/Images.vue';
@@ -29,9 +29,6 @@ export default {
   setup() {
     const store = useStore();
     const router = useRoute();
-    const state = reactive({
-      count: 0,
-    });
 
     // Computed properties
     const galleryName = computed(() => router.params.galleryName).value;
@@ -48,7 +45,6 @@ export default {
     });
 
     return {
-      ...toRefs(state),
       galleryName,
       showImageModal,
       showExifModal,

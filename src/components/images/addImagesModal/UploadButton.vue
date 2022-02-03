@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
-
 export default {
   emits: ['uploaded'],
   props: {
@@ -21,10 +19,6 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const state = reactive({
-      count: 0,
-    });
-
     const imageUpload = (files) => {
       emit('uploaded', {
         fileArray: [...files.target.files],
@@ -33,7 +27,6 @@ export default {
     };
 
     return {
-      ...toRefs(state),
       imageUpload,
     };
   },

@@ -5,21 +5,16 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
   setup() {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     const plusIconClicked = () =>
       store.dispatch(`galleries/changeModalVisibility`);
 
     return {
-      ...toRefs(state),
       plusIconClicked,
     };
   },

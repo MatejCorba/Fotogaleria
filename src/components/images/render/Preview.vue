@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import config from '../../../config/config';
 
@@ -37,16 +37,12 @@ export default {
   },
   setup() {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     const deleteMenuEnabled = computed(
       () => store.state.images.showMultiDeleteMenu
     );
 
     return {
-      ...toRefs(state),
       config,
       deleteMenuEnabled,
     };

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
 import axios from 'axios';
 import config from '../../../config/config';
@@ -39,9 +39,6 @@ export default {
   },
   setup(props, { emit }) {
     const store = useStore();
-    const state = reactive({
-      count: 0,
-    });
 
     const images = computed(() => store.state.images.images);
     const id = images.value[props.imageIndex]._id;
@@ -92,7 +89,6 @@ export default {
     };
 
     return {
-      ...toRefs(state),
       deleteImage,
       showExifModal,
       setNewPreviewImage,

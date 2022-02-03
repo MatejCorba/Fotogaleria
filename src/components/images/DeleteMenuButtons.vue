@@ -42,7 +42,6 @@ export default {
   setup(props) {
     const store = useStore();
     const state = reactive({
-      count: 0,
       deleteButtonClicked: false,
     });
 
