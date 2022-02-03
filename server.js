@@ -10,6 +10,7 @@ const appPath = path.join(__dirname, "./dist", 'server', manifest["app.js"]);
 const createApp = require(appPath).default;
 
 server.use("/img", express.static(path.join(__dirname, "./dist/client", "img")));
+server.use("/lightbox2", express.static(path.join(__dirname, "./dist/client", "lightbox2")));
 server.use("/js", express.static(path.join(__dirname, "./dist/client", "js")));
 server.use("/css", express.static(path.join(__dirname, "./dist/client", "css")));
 server.use(
