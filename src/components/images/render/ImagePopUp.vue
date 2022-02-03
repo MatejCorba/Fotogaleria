@@ -1,23 +1,23 @@
 <template>
-    <ul class="img_menu menu_on">
-      <li @click="deleteImage">
-        <a class="option_menu option_menu_hover" href="#"
-          ><i class="fas fa-trash"></i> ZMAZAŤ</a
-        >
-      </li>
+  <ul class="img_menu menu_on">
+    <li @click="deleteImage">
+      <a class="option_menu option_menu_hover" href="#"
+        ><i class="fas fa-trash"></i> ZMAZAŤ</a
+      >
+    </li>
 
-      <li @click="showExifModal">
-        <a class="option_menu option_menu_hover" href="#">
-          <i class="fas fa-info"></i> ZOBRAZIŤ EXIF</a
-        >
-      </li>
+    <li @click="showExifModal">
+      <a class="option_menu option_menu_hover" href="#">
+        <i class="fas fa-info"></i> ZOBRAZIŤ EXIF</a
+      >
+    </li>
 
-      <li @click="setNewPreviewImage">
-        <a class="option_menu option_menu_hover" href="#">
-          <i class="fas fa-image"></i> NASTAVIŤ AKO NÁHĽAD</a
-        >
-      </li>
-    </ul>
+    <li @click="setNewPreviewImage">
+      <a class="option_menu option_menu_hover" href="#">
+        <i class="fas fa-image"></i> NASTAVIŤ AKO NÁHĽAD</a
+      >
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -86,7 +86,7 @@ export default {
       emit('disableOverlay');
     };
 
-    onMounted(() => console.log("hi"));
+    onMounted(() => console.log('hi'));
 
     return {
       deleteImage,

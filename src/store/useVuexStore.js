@@ -11,18 +11,17 @@ export function _createStore() {
       galleries: galleries,
       images: images,
     },
-  
   });
 }
 
 export function provideStore(store) {
-  provide(StoreSymbol, store)
+  provide(StoreSymbol, store);
 }
 
 export default function useStore() {
-  const store = inject(StoreSymbol)
+  const store = inject(StoreSymbol);
   if (!store) {
-    throw Error('no store provided')
+    throw Error('no store provided');
   }
-  return store
+  return store;
 }

@@ -7,7 +7,6 @@ const {
 import Home from '../views/Home';
 import Images from '../views/Images';
 
-
 const isServer = typeof window === 'undefined';
 
 let history = isServer ? createMemoryHistory() : createWebHistory();
@@ -24,7 +23,7 @@ const routes = [
     path: '/:pathMatch(.)*/:galleryName',
     name: 'Images',
     component: Images,
-    props: true
+    props: true,
   },
 ];
 
