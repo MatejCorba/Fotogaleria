@@ -16,7 +16,7 @@ import Images from '../components/images/render/Images.vue';
 import { useStore } from 'vuex';
 import ArrowBack from '../components/images/ArrowBack.vue';
 import AddImagesModal from '../components/images/addImagesModal/AddImagesModal.vue';
-import ExifModal from '../components/images/ExifModal.vue';
+import ExifModal from '../components/images/exifModal/ExifModal.vue';
 
 export default {
   components: {

@@ -9,15 +9,11 @@
         <span v-for="(exif, index) in Object.keys(exifData)" :key="index">
           {{ exif }}: {{ exifData[exif] }} <br />
         </span>
-        <iframe
-        width = 90%
-        class="google-gps"
-        frameborder="0"
-        scrolling="no"
-        marginheight="0"
-        marginwidth="0"
-        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-        ><a href="https://www.gps.ie/golf-gps/">buy golf golf</a></iframe>
+        <GoogleMaps
+          v-if="exifData?.longitude && exifData?.latitude"
+          :longitude="exifData?.longitude"
+          :latitude="exifData?.latitude"
+        ></GoogleMaps>
       </p>
     </div>
   </section>
@@ -26,8 +22,12 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import GoogleMaps from './GoogleMaps.vue';
 
 export default {
+  components: {
+    GoogleMaps,
+  },
   props: {
     exifIndex: {
       type: Number,
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-.google-gps{
+.google-gps {
   padding-top: 20px;
 }
 </style>
