@@ -10,7 +10,7 @@
           {{ exif }}: {{ exifData[exif] }} <br />
         </span>
         <iframe
-        width = 400px
+        width = 90%
         class="google-gps"
         frameborder="0"
         scrolling="no"
