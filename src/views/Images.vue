@@ -6,6 +6,8 @@
   </div>
   <AddImagesModal v-if="showImageModal" :galleryName="galleryName" />
   <ExifModal v-if="showExifModal" :exifIndex="exifIndex" />
+
+  <footer></footer>
 </template>
 
 <script>
